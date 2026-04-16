@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO: redactado manualmente -->
+  <meta name="description" content="Portafolio de proyectos de ingeniería de sistemas: aplicaciones web, bases de datos y sistemas distribuidos desarrollados durante la carrera en la UNCP." />
+  <meta name="keywords" content="ingeniería de sistemas, portafolio, proyectos web, UNCP, desarrollo web, CSS Grid, HTML5" />
+  <meta name="author" content="Poves — IS093A UNCP" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portafolio Técnico — Poves" />
+  <meta property="og:description" content="Proyectos de ingeniería de sistemas: web, bases de datos, redes y sistemas operativos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_PE" />
+
+  <title>Portafolio Técnico — Poves | IS093A</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Skip link: accesibilidad teclado -->
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="logo" aria-label="Inicio del portafolio Poves">
+        <span class="logo-icono" aria-hidden="true">&#9670;</span>
+        <span class="logo-texto">Poves<span class="logo-punto">.</span>dev</span>
+      </div>
+
+      <nav class="site-nav" role="navigation" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+          <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+          <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
+          <li><a href="#contacto" class="nav-link nav-link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== LAYOUT PRINCIPAL (CSS Grid con grid-template-areas) ===== -->
+  <main id="contenido-principal" class="layout-grid">
+
+    <!-- HERO -->
+    <section class="area-hero" aria-labelledby="titulo-hero">
+      <div class="hero-texto">
+        <p class="hero-subtag" aria-label="Etiqueta: Ingeniería de Sistemas UNCP">
+          Ingeniería de Sistemas — UNCP
+        </p>
+        <h1 id="titulo-hero">
+          Hola, soy <span class="acento">Poves</span>.<br />
+          Construyo soluciones web.
+        </h1>
+        <p class="hero-descripcion">
+          Desarrollo aplicaciones web accesibles y responsivas, con énfasis en
+          semántica HTML5, CSS moderno y buenas prácticas de ingeniería.
+        </p>
+        <div class="hero-acciones">
+          <a href="#proyectos" class="btn-primario" role="button">Ver mis proyectos</a>
+          <a href="#sobre-mi" class="btn-fantasma">Sobre mí</a>
+        </div>
+      </div>
+      <figure class="hero-figura" aria-hidden="true">
+        <div class="figura-decorativa">
+          <div class="cuadro c1"></div>
+          <div class="cuadro c2"></div>
+          <div class="cuadro c3"></div>
+          <div class="codigo-deco">
+            <span>&lt;html&gt;</span>
+            <span>&nbsp;&nbsp;&lt;body&gt;</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;main/&gt;</span>
+            <span>&nbsp;&nbsp;&lt;/body&gt;</span>
+            <span>&lt;/html&gt;</span>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section id="proyectos" class="area-proyectos" aria-labelledby="titulo-proyectos">
+      <header class="seccion-cabecera">
+        <h2 id="titulo-proyectos">Proyectos Técnicos</h2>
+        <p class="subtitulo-seccion">Trabajos desarrollados con enfoque en accesibilidad y buenas prácticas</p>
+      </header>
+
+      <!-- Grid de cards con efecto masonry sin JS (grid-row: span) -->
+      <div class="grid-proyectos" role="list">
+
+        <!-- PROYECTO 1 — card grande (span 2 filas) -->
+        <article
+          class="card-proyecto card-grande"
+          role="listitem"
+          data-category="web"
+          data-year="2024"
+          data-tech="html-css-js"
+          aria-labelledby="p1-titulo"
+        >
+          <div class="card-imagen" aria-hidden="true">
+            <div class="img-placeholder color-web">
+              <span class="tech-icon">&#60;/&#62;</span>
+            </div>
+          </div>
+          <div class="card-contenido">
+            <span class="etiqueta etiqueta-web" aria-label="Categoría: Desarrollo Web">Web Frontend</span>
+            <h3 id="p1-titulo">Sistema de Registro Académico</h3>
+            <p>Aplicación web para gestión de matrículas universitarias con validación en tiempo real, diseño responsivo y accesibilidad WCAG 2.1. Implementa formularios accesibles con retroalimentación inmediata.</p>
+            <ul class="tech-lista" aria-label="Tecnologías: HTML5, CSS Grid, JavaScript">
+              <li>HTML5</li>
+              <li>CSS Grid</li>
+              <li>JavaScript</li>
+            </ul>
+            <a href="#" class="btn-card" aria-label="Ver detalles del Sistema de Registro Académico">
+              Ver proyecto &#8594;
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 2 -->
+        <article
+          class="card-proyecto"
+          role="listitem"
+          data-category="database"
+          data-year="2024"
+          data-tech="sql-postgresql"
+          aria-labelledby="p2-titulo"
+        >
+          <div class="card-imagen" aria-hidden="true">
+            <div class="img-placeholder color-db">
+              <span class="tech-icon">&#128196;</span>
+            </div>
+          </div>
+          <div class="card-contenido">
+            <span class="etiqueta etiqueta-db" aria-label="Categoría: Base de Datos">Base de Datos</span>
+            <h3 id="p2-titulo">Gestión de Inventario</h3>
+            <p>Sistema con PostgreSQL, procedimientos almacenados y reportes dinámicos por filtros.</p>
+            <ul class="tech-lista" aria-label="Tecnologías: PostgreSQL, SQL, PL/pgSQL">
+              <li>PostgreSQL</li>
+              <li>SQL</li>
+              <li>PL/pgSQL</li>
+            </ul>
+            <a href="#" class="btn-card" aria-label="Ver detalles del Sistema de Gestión de Inventario">
+              Ver proyecto &#8594;
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 3 -->
+        <article
+          class="card-proyecto"
+          role="listitem"
+          data-category="redes"
+          data-year="2023"
+          data-tech="python-socket"
+          aria-labelledby="p3-titulo"
+        >
+          <div class="card-imagen" aria-hidden="true">
+            <div class="img-placeholder color-redes">
+              <span class="tech-icon">&#8644;</span>
+            </div>
+          </div>
+          <div class="card-contenido">
+            <span class="etiqueta etiqueta-redes" aria-label="Categoría: Redes">Redes</span>
+            <h3 id="p3-titulo">Chat P2P en Python</h3>
+            <p>Mensajería punto a punto con sockets TCP/IP, manejo de hilos concurrentes y cifrado básico.</p>
+            <ul class="tech-lista" aria-label="Tecnologías: Python, Sockets, TCP/IP">
+              <li>Python</li>
+              <li>Sockets</li>
+              <li>TCP/IP</li>
+            </ul>
+            <a href="#" class="btn-card" aria-label="Ver detalles del Chat P2P en Python">
+              Ver proyecto &#8594;
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 4 — card ancha -->
+        <article
+          class="card-proyecto card-ancha"
+          role="listitem"
+          data-category="web"
+          data-year="2025"
+          data-tech="html-css-aria"
+          aria-labelledby="p4-titulo"
+        >
+          <div class="card-imagen" aria-hidden="true">
+            <div class="img-placeholder color-a11y">
+              <span class="tech-icon">&#9775;</span>
+            </div>
+          </div>
+          <div class="card-contenido">
+            <span class="etiqueta etiqueta-a11y" aria-label="Categoría: Accesibilidad Web">Accesibilidad</span>
+            <h3 id="p4-titulo">Portal Inclusivo UNCP</h3>
+            <p>Rediseño accesible de portal universitario con soporte para lectores de pantalla, navegación por teclado y modo de alto contraste. Cumple estándares WCAG 2.1 nivel AA.</p>
+            <ul class="tech-lista" aria-label="Tecnologías: HTML5 Semántico, ARIA, WCAG">
+              <li>HTML5 Semántico</li>
+              <li>ARIA</li>
+              <li>WCAG 2.1</li>
+            </ul>
+            <a href="#" class="btn-card" aria-label="Ver detalles del Portal Inclusivo UNCP">
+              Ver proyecto &#8594;
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 5 -->
+        <article
+          class="card-proyecto"
+          role="listitem"
+          data-category="sistemas"
+          data-year="2023"
+          data-tech="java-oop"
+          aria-labelledby="p5-titulo"
+        >
+          <div class="card-imagen" aria-hidden="true">
+            <div class="img-placeholder color-sis">
+              <span class="tech-icon">&#9965;</span>
+            </div>
+          </div>
+          <div class="card-contenido">
+            <span class="etiqueta etiqueta-sis" aria-label="Categoría: Sistemas Operativos">Sistemas</span>
+            <h3 id="p5-titulo">Simulador de Procesos OS</h3>
+            <p>Simulación de planificación de CPU con FCFS, SJF y Round-Robin en Java con interfaz de consola.</p>
+            <ul class="tech-lista" aria-label="Tecnologías: Java, POO, Algoritmos">
+              <li>Java</li>
+              <li>POO</li>
+              <li>Algoritmos</li>
+            </ul>
+            <a href="#" class="btn-card" aria-label="Ver detalles del Simulador de Procesos OS">
+              Ver proyecto &#8594;
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /grid-proyectos -->
+    </section>
+
+    <!-- ===== SIDEBAR: HABILIDADES ===== -->
+    <aside id="habilidades" class="area-sidebar" aria-labelledby="titulo-habilidades">
+      <h2 id="titulo-habilidades">Habilidades</h2>
+
+      <div class="grupo-habilidades">
+        <h3>Frontend</h3>
+        <ul class="lista-habilidades" role="list">
+          <li role="listitem">
+            <span class="hab-nombre">HTML5 / CSS3</span>
+            <div
+              class="barra-progreso"
+              role="progressbar"
+              aria-valuenow="90"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Nivel HTML5 y CSS3: 90%"
+            >
+              <div class="barra-relleno" style="--nivel: 90%"></div>
+            </div>
+            <span class="hab-porcentaje" aria-hidden="true">90%</span>
+          </li>
+          <li role="listitem">
+            <span class="hab-nombre">JavaScript</span>
+            <div
+              class="barra-progreso"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Nivel JavaScript: 75%"
+            >
+              <div class="barra-relleno" style="--nivel: 75%"></div>
+            </div>
+            <span class="hab-porcentaje" aria-hidden="true">75%</span>
+          </li>
+          <li role="listitem">
+            <span class="hab-nombre">CSS Grid / Flex</span>
+            <div
+              class="barra-progreso"
+              role="progressbar"
+              aria-valuenow="85"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Nivel CSS Grid y Flexbox: 85%"
+            >
+              <div class="barra-relleno" style="--nivel: 85%"></div>
+            </div>
+            <span class="hab-porcentaje" aria-hidden="true">85%</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="grupo-habilidades">
+        <h3>Backend / Datos</h3>
+        <ul class="lista-habilidades" role="list">
+          <li role="listitem">
+            <span class="hab-nombre">Python</span>
+            <div
+              class="barra-progreso"
+              role="progressbar"
+              aria-valuenow="80"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Nivel Python: 80%"
+            >
+              <div class="barra-relleno" style="--nivel: 80%"></div>
+            </div>
+            <span class="hab-porcentaje" aria-hidden="true">80%</span>
+          </li>
+          <li role="listitem">
+            <span class="hab-nombre">SQL / PostgreSQL</span>
+            <div
+              class="barra-progreso"
+              role="progressbar"
+              aria-valuenow="70"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Nivel SQL y PostgreSQL: 70%"
+            >
+              <div class="barra-relleno" style="--nivel: 70%"></div>
+            </div>
+            <span class="hab-porcentaje" aria-hidden="true">70%</span>
+          </li>
+          <li role="listitem">
+            <span class="hab-nombre">Java</span>
+            <div
+              class="barra-progreso"
+              role="progressbar"
+              aria-valuenow="65"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Nivel Java: 65%"
+            >
+              <div class="barra-relleno" style="--nivel: 65%"></div>
+            </div>
+            <span class="hab-porcentaje" aria-hidden="true">65%</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="grupo-habilidades">
+        <h3>Herramientas</h3>
+        <ul class="lista-tags" role="list" aria-label="Lista de herramientas">
+          <li role="listitem">Git</li>
+          <li role="listitem">VS Code</li>
+          <li role="listitem">Lighthouse</li>
+          <li role="listitem">WAVE</li>
+          <li role="listitem">Figma</li>
+          <li role="listitem">Linux</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="sobre-mi" class="area-sobre-mi" aria-labelledby="titulo-sobre-mi">
+      <h2 id="titulo-sobre-mi">Sobre mí</h2>
+      <div class="sobre-mi-grid">
+        <div class="sobre-mi-texto">
+          <p>
+            Estudiante de <strong>Ingeniería de Sistemas</strong> en la Universidad
+            Nacional del Centro del Perú (UNCP). Me especializo en desarrollo web
+            con enfoque en accesibilidad, semántica HTML5 y diseño responsivo moderno.
+          </p>
+          <p>
+            Actualmente profundizando en CSS avanzado: <em>Grid</em>, <em>Container Queries</em>
+            y tipografía fluida con <code>clamp()</code>. Comprometido con escribir código
+            limpio, accesible y bien documentado.
+          </p>
+        </div>
+        <dl class="sobre-mi-datos" aria-label="Información de perfil">
+          <div class="dato-fila">
+            <dt>Universidad</dt>
+            <dd>UNCP — Ing. de Sistemas</dd>
+          </div>
+          <div class="dato-fila">
+            <dt>Curso</dt>
+            <dd>IS093A — Des. Aplicaciones Web</dd>
+          </div>
+          <div class="dato-fila">
+            <dt>Especialidad</dt>
+            <dd>Web Frontend + A11y</dd>
+          </div>
+          <div class="dato-fila">
+            <dt>Año</dt>
+            <dd>2025</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contacto" class="area-footer" role="contentinfo">
+      <h2 class="visualmente-oculto">Pie de página y contacto</h2>
+      <div class="footer-grid">
+        <div class="footer-marca">
+          <span class="logo-texto" aria-hidden="true">Poves<span class="logo-punto">.</span>dev</span>
+          <p>Portafolio técnico individual — Semana 2 IS093A</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navegación secundaria del pie de página">
+          <ul>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+          </ul>
+        </nav>
+        <address class="footer-contacto">
+          <p>Universidad Nacional del Centro del Perú</p>
+          <p>Facultad de Ingeniería de Sistemas</p>
+          <a href="mailto:estudiante@uncp.edu.pe">estudiante@uncp.edu.pe</a>
+        </address>
+      </div>
+      <p class="footer-copy">
+        <small>&copy; 2025 — Práctica Semana 02 — Desarrollo de Aplicaciones Web IS093A — Poves</small>
+      </p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
