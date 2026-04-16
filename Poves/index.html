@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO: redactado manualmente -->
-  <meta name="description" content="Portafolio técnico de Poves — estudiante de Ingeniería de Sistemas en la UNCP. Proyectos de desarrollo web, bases de datos y sistemas distribuidos." />
-  <meta name="keywords" content="ingeniería de sistemas, portafolio, UNCP, HTML5, CSS Grid, desarrollo web, accesibilidad" />
-  <meta name="author" content="Poves — IS093A UNCP" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#6366f1" />
+  <meta name="description" content="Portafolio técnico de Poves — estudiante de Ingeniería de Sistemas en la UNCP. Proyectos de desarrollo web, bases de datos y sistemas distribuidos.">
+  <meta name="keywords" content="ingeniería de sistemas, portafolio, UNCP, HTML5, CSS Grid, desarrollo web, accesibilidad">
+  <meta name="author" content="Alessandro Poves — IS093A UNCP">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#6366f1">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Portafolio Técnico — Poves" />
-  <meta property="og:description" content="Proyectos de ingeniería de sistemas: web, bases de datos, redes y sistemas operativos." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_PE" />
+  <meta property="og:title" content="Portafolio Técnico — Poves">
+  <meta property="og:description" content="Proyectos de ingeniería de sistemas: web, bases de datos, redes y sistemas operativos.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
 
   <title>Poves · Portafolio IS093A</title>
 
   <!-- Fuente del sistema — sin dependencias externas -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -29,8 +29,9 @@
 
   <!-- ======================================================
        HEADER — sticky con backdrop blur
+       Corrección W3C: role="banner" es redundante en <header> directo de <body>
        ====================================================== -->
-  <header class="site-header" role="banner">
+  <header class="site-header">
     <div class="header-inner">
 
       <a href="#" class="logo" aria-label="Inicio — Portafolio Poves">
@@ -38,8 +39,10 @@
         <span class="logo-text">oves<span class="logo-dot">.</span></span>
       </a>
 
-      <nav class="site-nav" role="navigation" aria-label="Navegación principal">
-        <ul class="nav-list" role="list">
+      <!-- Corrección W3C: role="navigation" es redundante en <nav> -->
+      <nav class="site-nav" aria-label="Navegación principal">
+        <!-- Corrección W3C: role="list" es redundante en <ul> -->
+        <ul class="nav-list">
           <li><a href="#proyectos"  class="nav-link">Proyectos</a></li>
           <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
           <li><a href="#sobre-mi"   class="nav-link">Sobre mí</a></li>
@@ -73,14 +76,16 @@
       </div>
 
       <div class="hero-content">
-        <p class="hero-badge" aria-label="Ingeniería de Sistemas — UNCP">
+        <!-- Corrección W3C: aria-label no permitido en <p> sin role.
+             Solución: convertido a <div role="note"> -->
+        <div class="hero-badge" role="note">
           <span class="badge-dot" aria-hidden="true"></span>
           Ingeniería de Sistemas · UNCP
-        </p>
+        </div>
 
         <h1 id="hero-titulo" class="hero-titulo">
-          Hola, soy<br />
-          <span class="gradient-text">Poves</span>.<br />
+          Hola, soy<br>
+          <span class="gradient-text">Poves</span>.<br>
           Construyo web.
         </h1>
 
@@ -97,19 +102,23 @@
           <a href="#sobre-mi" class="btn btn-ghost">Sobre mí</a>
         </div>
 
-        <div class="hero-stats" aria-label="Estadísticas rápidas">
+        <!-- Corrección W3C: aria-label no permitido en <div> sin role.
+             Solución: añadido role="group" -->
+        <div class="hero-stats" role="group" aria-label="Estadísticas rápidas">
           <div class="stat">
-            <span class="stat-num" aria-label="5 proyectos">5</span>
+            <!-- Corrección W3C: aria-label no permitido en <span> sin role.
+                 Solución: texto descriptivo visible en stat-label es suficiente -->
+            <span class="stat-num" aria-hidden="true">5</span>
             <span class="stat-label">Proyectos</span>
           </div>
           <div class="stat-divider" aria-hidden="true"></div>
           <div class="stat">
-            <span class="stat-num" aria-label="3 años de experiencia">3</span>
+            <span class="stat-num" aria-hidden="true">3</span>
             <span class="stat-label">Años</span>
           </div>
           <div class="stat-divider" aria-hidden="true"></div>
           <div class="stat">
-            <span class="stat-num" aria-label="6 tecnologías">6+</span>
+            <span class="stat-num" aria-hidden="true">6+</span>
             <span class="stat-label">Tecnologías</span>
           </div>
         </div>
@@ -151,12 +160,13 @@
         <p class="section-desc">Proyectos desarrollados con énfasis en accesibilidad, semántica y diseño responsivo</p>
       </div>
 
-      <div class="projects-grid" role="list">
+      <!-- Corrección W3C: role="list" en <div> + role="listitem" en <article> es inválido.
+           Solución: los <article> son semánticamente correctos sin roles explícitos -->
+      <div class="projects-grid">
 
         <!-- PROYECTO 1 — destacado (span 2 filas) -->
         <article
           class="project-card card-featured"
-          role="listitem"
           data-category="web"
           data-year="2024"
           data-tech="html-css-js"
@@ -168,8 +178,10 @@
           </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="tag tag-web" aria-label="Categoría: Web Frontend">Web Frontend</span>
-              <span class="card-year" aria-label="Año: 2024">2024</span>
+              <!-- Corrección W3C: aria-label no permitido en <span> sin role.
+                   El texto visible ya describe la categoría. -->
+              <span class="tag tag-web">Web Frontend</span>
+              <span class="card-year">2024</span>
             </div>
             <h3 id="p1-title" class="card-title">Sistema de Registro Académico</h3>
             <p class="card-desc">
@@ -189,7 +201,6 @@
         <!-- PROYECTO 2 -->
         <article
           class="project-card"
-          role="listitem"
           data-category="database"
           data-year="2024"
           data-tech="sql-postgresql"
@@ -200,8 +211,8 @@
           </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="tag tag-db" aria-label="Categoría: Base de Datos">Base de Datos</span>
-              <span class="card-year" aria-label="Año: 2024">2024</span>
+              <span class="tag tag-db">Base de Datos</span>
+              <span class="card-year">2024</span>
             </div>
             <h3 id="p2-title" class="card-title">Gestión de Inventario</h3>
             <p class="card-desc">Sistema con PostgreSQL, procedimientos almacenados y reportes dinámicos por filtros.</p>
@@ -217,7 +228,6 @@
         <!-- PROYECTO 3 -->
         <article
           class="project-card"
-          role="listitem"
           data-category="redes"
           data-year="2023"
           data-tech="python-socket"
@@ -228,8 +238,8 @@
           </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="tag tag-net" aria-label="Categoría: Redes">Redes</span>
-              <span class="card-year" aria-label="Año: 2023">2023</span>
+              <span class="tag tag-net">Redes</span>
+              <span class="card-year">2023</span>
             </div>
             <h3 id="p3-title" class="card-title">Chat P2P en Python</h3>
             <p class="card-desc">Mensajería punto a punto con sockets TCP/IP, hilos concurrentes y cifrado básico.</p>
@@ -245,7 +255,6 @@
         <!-- PROYECTO 4 — ancho (2 columnas) -->
         <article
           class="project-card card-wide"
-          role="listitem"
           data-category="web"
           data-year="2025"
           data-tech="html-css-aria"
@@ -256,8 +265,8 @@
           </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="tag tag-a11y" aria-label="Categoría: Accesibilidad">Accesibilidad</span>
-              <span class="card-year" aria-label="Año: 2025">2025</span>
+              <span class="tag tag-a11y">Accesibilidad</span>
+              <span class="card-year">2025</span>
             </div>
             <h3 id="p4-title" class="card-title">Portal Inclusivo UNCP</h3>
             <p class="card-desc">
@@ -276,7 +285,6 @@
         <!-- PROYECTO 5 -->
         <article
           class="project-card"
-          role="listitem"
           data-category="sistemas"
           data-year="2023"
           data-tech="java-oop"
@@ -287,8 +295,8 @@
           </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="tag tag-sys" aria-label="Categoría: Sistemas">Sistemas</span>
-              <span class="card-year" aria-label="Año: 2023">2023</span>
+              <span class="tag tag-sys">Sistemas</span>
+              <span class="card-year">2023</span>
             </div>
             <h3 id="p5-title" class="card-title">Simulador de Procesos OS</h3>
             <p class="card-desc">Simulación de planificación de CPU con FCFS, SJF y Round-Robin implementados en Java.</p>
@@ -310,10 +318,11 @@
     <aside id="habilidades" class="area-sidebar" aria-labelledby="titulo-habilidades">
 
       <div class="skills-panel">
-        <!-- Cabecera del panel -->
         <div class="skills-panel-header">
           <h2 id="titulo-habilidades" class="skills-panel-title">Habilidades</h2>
-          <span class="skills-panel-badge" aria-label="6 habilidades">6 skills</span>
+          <!-- Corrección W3C: aria-label no permitido en <span> sin role.
+               Solución: texto visible es suficiente, aria-label eliminado -->
+          <span class="skills-panel-badge">6 skills</span>
         </div>
 
         <div class="skills-panel-body">
@@ -321,8 +330,10 @@
           <!-- Frontend -->
           <div class="skills-group">
             <h3 class="skills-group-title">Frontend</h3>
-            <ul class="skills-list" role="list">
-              <li role="listitem" class="skill-item">
+            <!-- Corrección W3C: role="list" redundante en <ul>,
+                 role="listitem" redundante en <li> — eliminados -->
+            <ul class="skills-list">
+              <li class="skill-item">
                 <div class="skill-info">
                   <span class="skill-name">HTML5 / CSS3</span>
                   <span class="skill-pct" aria-hidden="true">90%</span>
@@ -331,7 +342,7 @@
                   <div class="skill-fill" style="--pct: 90%"></div>
                 </div>
               </li>
-              <li role="listitem" class="skill-item">
+              <li class="skill-item">
                 <div class="skill-info">
                   <span class="skill-name">JavaScript</span>
                   <span class="skill-pct" aria-hidden="true">75%</span>
@@ -340,7 +351,7 @@
                   <div class="skill-fill" style="--pct: 75%"></div>
                 </div>
               </li>
-              <li role="listitem" class="skill-item">
+              <li class="skill-item">
                 <div class="skill-info">
                   <span class="skill-name">CSS Grid / Flexbox</span>
                   <span class="skill-pct" aria-hidden="true">85%</span>
@@ -357,8 +368,8 @@
           <!-- Backend / Datos -->
           <div class="skills-group">
             <h3 class="skills-group-title">Backend / Datos</h3>
-            <ul class="skills-list" role="list">
-              <li role="listitem" class="skill-item">
+            <ul class="skills-list">
+              <li class="skill-item">
                 <div class="skill-info">
                   <span class="skill-name">Python</span>
                   <span class="skill-pct" aria-hidden="true">80%</span>
@@ -367,7 +378,7 @@
                   <div class="skill-fill" style="--pct: 80%"></div>
                 </div>
               </li>
-              <li role="listitem" class="skill-item">
+              <li class="skill-item">
                 <div class="skill-info">
                   <span class="skill-name">SQL / PostgreSQL</span>
                   <span class="skill-pct" aria-hidden="true">70%</span>
@@ -376,7 +387,7 @@
                   <div class="skill-fill" style="--pct: 70%"></div>
                 </div>
               </li>
-              <li role="listitem" class="skill-item">
+              <li class="skill-item">
                 <div class="skill-info">
                   <span class="skill-name">Java</span>
                   <span class="skill-pct" aria-hidden="true">65%</span>
@@ -393,14 +404,14 @@
           <!-- Herramientas -->
           <div class="skills-group">
             <h3 class="skills-group-title">Herramientas</h3>
-            <ul class="tools-list" role="list" aria-label="Lista de herramientas">
-              <li role="listitem">Git</li>
-              <li role="listitem">VS Code</li>
-              <li role="listitem">Lighthouse</li>
-              <li role="listitem">WAVE</li>
-              <li role="listitem">Figma</li>
-              <li role="listitem">Linux</li>
-              <li role="listitem">GitHub</li>
+            <ul class="tools-list" aria-label="Lista de herramientas">
+              <li>Git</li>
+              <li>VS Code</li>
+              <li>Lighthouse</li>
+              <li>WAVE</li>
+              <li>Figma</li>
+              <li>Linux</li>
+              <li>GitHub</li>
             </ul>
           </div>
 
@@ -448,26 +459,36 @@
             </div>
           </div>
 
-          <!-- Lado derecho: tarjetas de datos -->
+          <!-- Lado derecho: tarjetas de datos
+               Corrección W3C: <div> dentro de <div> hijo de <dl> es inválido.
+               Solución: ícono movido dentro de <dt> como <span> -->
           <dl class="about-cards" aria-label="Datos de perfil">
             <div class="about-card">
-              <div class="about-card-icon" aria-hidden="true">&#127979;</div>
-              <dt>Universidad</dt>
+              <dt>
+                <span class="about-card-icon" aria-hidden="true">&#127979;</span>
+                Universidad
+              </dt>
               <dd>UNCP — Ing. de Sistemas</dd>
             </div>
             <div class="about-card">
-              <div class="about-card-icon" aria-hidden="true">&#128187;</div>
-              <dt>Especialidad</dt>
+              <dt>
+                <span class="about-card-icon" aria-hidden="true">&#128187;</span>
+                Especialidad
+              </dt>
               <dd>Web Frontend + A11y</dd>
             </div>
             <div class="about-card">
-              <div class="about-card-icon" aria-hidden="true">&#128214;</div>
-              <dt>Curso</dt>
+              <dt>
+                <span class="about-card-icon" aria-hidden="true">&#128214;</span>
+                Curso
+              </dt>
               <dd>IS093A — Semana 2</dd>
             </div>
             <div class="about-card">
-              <div class="about-card-icon" aria-hidden="true">&#128197;</div>
-              <dt>Año</dt>
+              <dt>
+                <span class="about-card-icon" aria-hidden="true">&#128197;</span>
+                Año
+              </dt>
               <dd>2025</dd>
             </div>
           </dl>
@@ -479,7 +500,7 @@
     <!-- ────────────────────────────────────────────────────
          FOOTER
          ──────────────────────────────────────────────────── -->
-    <footer id="contacto" class="area-footer" role="contentinfo">
+    <footer id="contacto" class="area-footer">
       <h2 class="visually-hidden">Pie de página y contacto</h2>
 
       <div class="footer-inner">
@@ -493,7 +514,7 @@
 
         <nav class="footer-nav" aria-label="Navegación del pie de página">
           <p class="footer-nav-title">Secciones</p>
-          <ul role="list">
+          <ul>
             <li><a href="#proyectos">Proyectos</a></li>
             <li><a href="#habilidades">Habilidades</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
