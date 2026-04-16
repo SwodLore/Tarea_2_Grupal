@@ -3,10 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Melgarejo — IS093A Semana 2</title>
+  <meta name="description" content="Portafolio de Renzo Melgarejo: proyectos, stack, habilidades y ruta de trabajo en 5 pasos." />
+  <meta name="author" content="Renzo Melgarejo" />
+  <meta name="theme-color" content="#0e7490" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <h1>Melgarejo</h1>
-  <p>Trabajo individual — Semana 2 — IS093A</p>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#inicio" class="logo" aria-label="Inicio del portafolio de Renzo">
+        <span class="logo-badge">R</span>
+        <span class="logo-text">enzo.dev</span>
+      </a>
+
+      <nav aria-label="Navegacion principal">
+        <ul class="nav-list">
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#pasos">5 pasos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro">
+        <span class="theme-toggle-text">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido" class="container page-grid">
+    <section id="inicio" class="hero card">
+      <div class="hero-content">
+        <p class="hero-kicker">Programador web | Portafolio personal</p>
+        <h1>Renzo Melgarejo construye experiencias web limpias, modernas y utiles.</h1>
+        <p class="hero-description">
+          Portafolio inspirado en la estructura de Poves, adaptado a tu identidad para mostrar
+          proyectos, stack tecnico y ruta de trabajo con claridad profesional.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn-secondary" href="#pasos">Ver los 5 pasos</a>
+        </div>
+        <div class="hero-metrics">
+          <div><strong>5</strong><span>Pasos</span></div>
+          <div><strong>6+</strong><span>Tecnologias</span></div>
+          <div><strong>2026</strong><span>Actualizado</span></div>
+        </div>
+      </div>
+
+      <aside class="code-widget" aria-label="Resumen tecnico">
+<pre><code>const renzo = {
+  role: "Frontend Developer",
+  stack: ["HTML", "CSS", "JS"],
+  design: "Clean UI",
+  darkMode: true
+};</code></pre>
+      </aside>
+    </section>
+
+    <section id="proyectos" class="projects">
+      <div class="section-title">
+        <p>// Portafolio</p>
+        <h2>Proyectos destacados</h2>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card card project-featured">
+          <span class="tag">Web App</span>
+          <h3>Sistema de registro academico</h3>
+          <p>Interfaz responsive con formularios accesibles y validacion en tiempo real.</p>
+          <ul>
+            <li>HTML5 semantico</li>
+            <li>CSS Grid y Flexbox</li>
+            <li>JavaScript modular</li>
+          </ul>
+        </article>
+
+        <article class="project-card card">
+          <span class="tag tag-db">Data</span>
+          <h3>Dashboard de inventario</h3>
+          <p>Panel con visualizacion de estados, filtros y reportes por periodos.</p>
+        </article>
+
+        <article class="project-card card">
+          <span class="tag tag-net">Network</span>
+          <h3>Chat P2P</h3>
+          <p>Mensajeria de baja latencia con sockets y arquitectura cliente-servidor.</p>
+        </article>
+      </div>
+    </section>
+
+    <aside id="habilidades" class="skills card">
+      <h2>Habilidades</h2>
+      <div class="skill-item">
+        <div class="skill-row"><span>HTML y CSS</span><span>90%</span></div>
+        <div class="skill-bar"><span style="--w:90%"></span></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span>JavaScript</span><span>78%</span></div>
+        <div class="skill-bar"><span style="--w:78%"></span></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span>UI/UX</span><span>82%</span></div>
+        <div class="skill-bar"><span style="--w:82%"></span></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span>Git y flujo de trabajo</span><span>75%</span></div>
+        <div class="skill-bar"><span style="--w:75%"></span></div>
+      </div>
+    </aside>
+
+    <section id="pasos" class="steps-section card">
+      <div class="section-title">
+        <p>// Entregable</p>
+        <h2>Ruta de trabajo en 5 pasos</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card"><span>1</span><h3>Analisis</h3><p>Identificar objetivo, alcance y criterios.</p></article>
+        <article class="step-card"><span>2</span><h3>Estructura</h3><p>Definir secciones, navegacion y jerarquia visual.</p></article>
+        <article class="step-card"><span>3</span><h3>Desarrollo</h3><p>Implementar interfaz moderna, limpia y responsive.</p></article>
+        <article class="step-card"><span>4</span><h3>Evidencia</h3><p>Documentar resultados, elementos y decisiones.</p></article>
+        <article class="step-card"><span>5</span><h3>Revision</h3><p>Verificar calidad y dejar listo el avance antes de Parte 2.</p></article>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact card">
+      <h2>Contacto</h2>
+      <p>Disponible para colaboraciones academicas y proyectos web.</p>
+      <a href="mailto:renzo.dev@example.com">renzo.dev@example.com</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Renzo Melgarejo | Portafolio de programador | 2026</p>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById("theme-toggle");
+      var toggleText = document.querySelector(".theme-toggle-text");
+      var stored = localStorage.getItem("theme");
+      var initialTheme = stored || "light";
+
+      root.setAttribute("data-theme", initialTheme);
+      toggleText.textContent = initialTheme === "dark" ? "Modo claro" : "Modo oscuro";
+
+      toggle.addEventListener("click", function () {
+        var current = root.getAttribute("data-theme");
+        var next = current === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        toggleText.textContent = next === "dark" ? "Modo claro" : "Modo oscuro";
+      });
+    })();
+  </script>
 </body>
 </html>
