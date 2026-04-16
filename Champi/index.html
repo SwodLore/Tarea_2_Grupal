@@ -1,12 +1,328 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- =============================================
+       PASO 1: Metadatos SEO y configuración base
+       Concepto: Árbol DOM, separación contenido/presentación
+  ============================================= -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Champi — IS093A Semana 2</title>
+
+  <!-- Meta SEO redactados manualmente -->
+  <meta name="description" content="Guía completa sobre la Metodología XP (Extreme Programming): valores, prácticas, roles y ciclo de vida del desarrollo ágil de software." />
+  <meta name="keywords" content="XP, Extreme Programming, metodología ágil, desarrollo de software, TDD, pair programming" />
+  <meta name="author" content="Facultad de Ingeniería de Sistemas - UNCP" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Metodología XP - Extreme Programming" />
+  <meta property="og:description" content="Aprende los fundamentos de XP: valores, prácticas esenciales y cómo aplicarla en proyectos reales." />
+  <meta property="og:type" content="website" />
+
+  <title>Metodología XP — Extreme Programming</title>
+
+  <!-- Enlace a hoja de estilos (Paso 2) -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <h1>Champi</h1>
-  <p>Trabajo individual — Semana 2 — IS093A</p>
+
+  <!-- SKIP LINK: accesibilidad para navegación por teclado -->
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- =============================================
+       CABECERA: semántica con role y aria-label
+  ============================================= -->
+  <header class="site-header" role="banner" aria-label="Encabezado del sitio">
+    <div class="header-inner">
+      <div class="logo-area">
+        <!-- data-* simulando carga XML de categoría -->
+        <span class="logo-icon" aria-hidden="true">⚡</span>
+        <h1 data-category="metodologia" data-xml-id="xp-001">Metodología XP</h1>
+        <p class="tagline">Extreme Programming — Desarrollo Ágil</p>
+      </div>
+
+      <!-- NAVEGACIÓN PRINCIPAL -->
+      <nav role="navigation" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#que-es" tabindex="0">¿Qué es XP?</a></li>
+          <li><a href="#valores" tabindex="0">Valores</a></li>
+          <li><a href="#practicas" tabindex="0">Prácticas</a></li>
+          <li><a href="#roles" tabindex="0">Roles</a></li>
+          <li><a href="#ciclo" tabindex="0">Ciclo de Vida</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =============================================
+       CONTENIDO PRINCIPAL
+  ============================================= -->
+  <main id="contenido-principal" role="main" aria-label="Contenido sobre Metodología XP">
+
+    <!-- SECCIÓN HERO -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Metodología Ágil</p>
+        <h2 id="hero-titulo">Extreme Programming</h2>
+        <p class="hero-desc">
+          XP es una metodología de desarrollo de software que prioriza la comunicación,
+          la simplicidad y la retroalimentación continua para entregar software de alta calidad.
+        </p>
+        <a href="#que-es" class="btn-primary" aria-label="Descubrir más sobre la metodología XP">Descubrir más</a>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="xp-badge">XP</div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN: ¿Qué es XP?
+         data-* simulando datos provenientes de XML
+    ============================================= -->
+    <section id="que-es" class="section-card" aria-labelledby="titulo-quees"
+             data-category="introduccion" data-xml-id="xp-002" data-source="kent-beck-1999">
+      <h2 id="titulo-quees">¿Qué es la Metodología XP?</h2>
+      <div class="card-grid">
+        <article class="info-card" data-category="historia">
+          <h3>Origen</h3>
+          <p>
+            Extreme Programming fue creado por <strong>Kent Beck</strong> en 1996 durante
+            el proyecto C3 de Chrysler. Fue formalizado en su libro
+            <em>"Extreme Programming Explained"</em> (1999).
+          </p>
+        </article>
+        <article class="info-card" data-category="definicion">
+          <h3>Definición</h3>
+          <p>
+            XP es un marco de trabajo ágil que busca mejorar la calidad del software
+            y la capacidad de respuesta al cambio mediante <strong>iteraciones cortas</strong>,
+            retroalimentación constante y trabajo en equipo estrecho.
+          </p>
+        </article>
+        <article class="info-card" data-category="objetivo">
+          <h3>Objetivo Principal</h3>
+          <p>
+            Reducir el costo del cambio en los requisitos del software a través de
+            ciclos de desarrollo muy cortos, pruebas automáticas y comunicación
+            directa con el cliente.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN: Valores de XP
+    ============================================= -->
+    <section id="valores" class="section-valores" aria-labelledby="titulo-valores"
+             data-category="valores" data-xml-id="xp-003">
+      <h2 id="titulo-valores">Los 5 Valores de XP</h2>
+      <p class="section-intro">XP se sustenta en cinco valores fundamentales que guían todo el proceso de desarrollo.</p>
+
+      <div class="valores-grid">
+        <article class="valor-item" data-valor="comunicacion" tabindex="0"
+                 aria-label="Valor: Comunicación">
+          <span class="valor-icon" aria-hidden="true">💬</span>
+          <h3>Comunicación</h3>
+          <p>El equipo y el cliente deben comunicarse cara a cara para resolver problemas y alinear expectativas diariamente.</p>
+        </article>
+
+        <article class="valor-item" data-valor="simplicidad" tabindex="0"
+                 aria-label="Valor: Simplicidad">
+          <span class="valor-icon" aria-hidden="true">✂️</span>
+          <h3>Simplicidad</h3>
+          <p>Implementar solo lo necesario hoy. Evitar la sobreingeniería diseñando la solución más sencilla posible.</p>
+        </article>
+
+        <article class="valor-item" data-valor="retroalimentacion" tabindex="0"
+                 aria-label="Valor: Retroalimentación">
+          <span class="valor-icon" aria-hidden="true">🔄</span>
+          <h3>Retroalimentación</h3>
+          <p>Obtener feedback constante del cliente y del sistema mediante pruebas automatizadas e iteraciones frecuentes.</p>
+        </article>
+
+        <article class="valor-item" data-valor="valentia" tabindex="0"
+                 aria-label="Valor: Valentía">
+          <span class="valor-icon" aria-hidden="true">🦁</span>
+          <h3>Valentía</h3>
+          <p>Tomar decisiones difíciles: refactorizar código, tirar trabajo que no funciona, decir la verdad al cliente.</p>
+        </article>
+
+        <article class="valor-item" data-valor="respeto" tabindex="0"
+                 aria-label="Valor: Respeto">
+          <span class="valor-icon" aria-hidden="true">🤝</span>
+          <h3>Respeto</h3>
+          <p>Todo miembro del equipo respeta el trabajo de los demás. El cliente respeta al equipo y viceversa.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN: Prácticas de XP
+    ============================================= -->
+    <section id="practicas" class="section-card" aria-labelledby="titulo-practicas"
+             data-category="practicas" data-xml-id="xp-004">
+      <h2 id="titulo-practicas">Prácticas Esenciales de XP</h2>
+      <p class="section-intro">XP define 12 prácticas clave agrupadas en categorías.</p>
+
+      <div class="practicas-layout">
+
+        <div class="practica-group" data-group="programacion">
+          <h3 class="group-title">Programación</h3>
+          <ul class="practica-list" role="list">
+            <li role="listitem">
+              <strong>Pair Programming</strong>
+              <span>Dos desarrolladores trabajan juntos en una sola estación.</span>
+            </li>
+            <li role="listitem">
+              <strong>TDD (Test-Driven Development)</strong>
+              <span>Escribir pruebas antes de escribir el código funcional.</span>
+            </li>
+            <li role="listitem">
+              <strong>Refactoring</strong>
+              <span>Mejorar continuamente el diseño del código sin cambiar su comportamiento.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="practica-group" data-group="integracion">
+          <h3 class="group-title">Integración</h3>
+          <ul class="practica-list" role="list">
+            <li role="listitem">
+              <strong>Integración Continua</strong>
+              <span>Integrar y probar el código varias veces al día.</span>
+            </li>
+            <li role="listitem">
+              <strong>Propiedad Colectiva del Código</strong>
+              <span>Cualquier desarrollador puede modificar cualquier parte del sistema.</span>
+            </li>
+            <li role="listitem">
+              <strong>Estándares de Codificación</strong>
+              <span>Todo el equipo sigue las mismas convenciones de código.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="practica-group" data-group="planificacion">
+          <h3 class="group-title">Planificación</h3>
+          <ul class="practica-list" role="list">
+            <li role="listitem">
+              <strong>Planning Game</strong>
+              <span>El cliente y el equipo planifican las iteraciones juntos usando historias de usuario.</span>
+            </li>
+            <li role="listitem">
+              <strong>Pequeñas Entregas</strong>
+              <span>Entregar versiones funcionales del software en ciclos muy cortos.</span>
+            </li>
+            <li role="listitem">
+              <strong>Metáfora del Sistema</strong>
+              <span>Usar una historia simple que explique cómo funciona el sistema.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN: Roles
+    ============================================= -->
+    <section id="roles" class="section-roles" aria-labelledby="titulo-roles"
+             data-category="roles" data-xml-id="xp-005">
+      <h2 id="titulo-roles">Roles en XP</h2>
+      <div class="roles-flex">
+        <article class="role-card" data-role="cliente" aria-label="Rol: Cliente">
+          <div class="role-num" aria-hidden="true">01</div>
+          <h3>Cliente</h3>
+          <p>Define las historias de usuario, establece prioridades y valida los entregables en cada iteración.</p>
+        </article>
+        <article class="role-card" data-role="programador" aria-label="Rol: Programador">
+          <div class="role-num" aria-hidden="true">02</div>
+          <h3>Programador</h3>
+          <p>Escribe el código, las pruebas y realiza la integración continua. Es el corazón del equipo XP.</p>
+        </article>
+        <article class="role-card" data-role="tester" aria-label="Rol: Tester">
+          <div class="role-num" aria-hidden="true">03</div>
+          <h3>Tester</h3>
+          <p>Ayuda al cliente a definir pruebas de aceptación y verifica que el sistema cumpla los requisitos.</p>
+        </article>
+        <article class="role-card" data-role="coach" aria-label="Rol: Coach">
+          <div class="role-num" aria-hidden="true">04</div>
+          <h3>Coach</h3>
+          <p>Guía al equipo en el uso correcto de XP, resuelve dudas sobre la metodología y facilita el proceso.</p>
+        </article>
+        <article class="role-card" data-role="tracker" aria-label="Rol: Tracker">
+          <div class="role-num" aria-hidden="true">05</div>
+          <h3>Tracker</h3>
+          <p>Monitorea el progreso del equipo, compara estimaciones vs. realidad y sugiere ajustes al plan.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN: Ciclo de Vida
+    ============================================= -->
+    <section id="ciclo" class="section-card" aria-labelledby="titulo-ciclo"
+             data-category="ciclo-vida" data-xml-id="xp-006">
+      <h2 id="titulo-ciclo">Ciclo de Vida en XP</h2>
+      <p class="section-intro">XP organiza el desarrollo en fases iterativas e incrementales.</p>
+
+      <ol class="ciclo-list" aria-label="Fases del ciclo de vida de XP">
+        <li class="ciclo-item" data-fase="1">
+          <div class="ciclo-num" aria-hidden="true">1</div>
+          <div class="ciclo-content">
+            <h3>Exploración</h3>
+            <p>El cliente escribe historias de usuario. El equipo estima el esfuerzo y explora tecnologías.</p>
+          </div>
+        </li>
+        <li class="ciclo-item" data-fase="2">
+          <div class="ciclo-num" aria-hidden="true">2</div>
+          <div class="ciclo-content">
+            <h3>Planificación</h3>
+            <p>Se acuerda el plan de la primera entrega. El cliente prioriza las historias más valiosas.</p>
+          </div>
+        </li>
+        <li class="ciclo-item" data-fase="3">
+          <div class="ciclo-num" aria-hidden="true">3</div>
+          <div class="ciclo-content">
+            <h3>Iteraciones</h3>
+            <p>Se desarrolla en ciclos de 1-3 semanas. Cada iteración produce software funcional y probado.</p>
+          </div>
+        </li>
+        <li class="ciclo-item" data-fase="4">
+          <div class="ciclo-num" aria-hidden="true">4</div>
+          <div class="ciclo-content">
+            <h3>Producción</h3>
+            <p>El sistema pasa a producción con pruebas exhaustivas. Comienza el soporte y mantenimiento.</p>
+          </div>
+        </li>
+        <li class="ciclo-item" data-fase="5">
+          <div class="ciclo-num" aria-hidden="true">5</div>
+          <div class="ciclo-content">
+            <h3>Muerte del Proyecto</h3>
+            <p>El cliente no tiene más historias de usuario o el sistema ya no es costeable de mantener.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       PIE DE PÁGINA
+  ============================================= -->
+  <footer class="site-footer" role="contentinfo" aria-label="Pie de página">
+    <div class="footer-inner">
+      <p>
+        <strong>Desarrollo de Aplicaciones Web — IS093A</strong><br />
+        Universidad Nacional del Centro del Perú · Facultad de Ingeniería de Sistemas
+      </p>
+      <p class="footer-credits">
+        Práctica Semana 02 · Tema: Metodología XP ·
+        <time datetime="2025">2025</time>
+      </p>
+    </div>
+  </footer>
+
 </body>
 </html>
