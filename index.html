@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ERROR INTENCIONAL #2: Falta meta description para SEO -->
-  <!-- <meta name="description" content="..."> REMOVIDO INTENCIONALMENTE -->
+  <meta name="description"
+    content="Galería de proyectos técnicos responsiva del equipo IS093A (Champi, Melgarejo, Poves) — UNCP. HTML5 semántico, CSS Grid/Flexbox, accesibilidad WCAG 2.1.">
 
   <meta name="author" content="Champi, Melgarejo, Poves — IS093A UNCP">
   <meta name="robots" content="index, follow">
@@ -19,10 +20,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <!-- Skip link para accesibilidad -->
@@ -31,7 +35,7 @@
   <!-- ======================================================
        HEADER
        ====================================================== -->
-  <header class="site-header" role="banner" aria-label="Encabezado del sitio">
+  <header class="site-header" aria-label="Encabezado del sitio">
     <div class="header-inner">
 
       <a href="#" class="logo" aria-label="Inicio — Galería de Proyectos">
@@ -39,7 +43,7 @@
         <span class="logo-text">ProyectosIS<span class="logo-dot">.</span></span>
       </a>
 
-      <nav role="navigation" aria-label="Navegación principal">
+      <nav aria-label="Navegación principal">
         <ul class="nav-list">
           <li><a href="#galeria" class="nav-link">Galería</a></li>
           <li><a href="#integrante-champi" class="nav-link">Champi</a></li>
@@ -55,7 +59,7 @@
   <!-- ======================================================
        CONTENIDO PRINCIPAL
        ====================================================== -->
-  <main id="contenido-principal" class="page-grid" role="main" aria-label="Contenido de la galería de proyectos">
+  <main id="contenido-principal" class="page-grid" aria-label="Contenido de la galería de proyectos">
 
     <!-- ──────────────────────────────────────────────────── 
          HERO
@@ -81,7 +85,7 @@
         </h1>
 
         <p class="hero-desc">
-          Colección de trabajos desarrollados por nuestro equipo durante el curso de 
+          Colección de trabajos desarrollados por nuestro equipo durante el curso de
           Desarrollo de Aplicaciones Web. HTML5 semántico, CSS moderno y accesibilidad.
         </p>
 
@@ -149,8 +153,8 @@
       <!-- ============= CHAMPI ============= -->
       <div id="integrante-champi" class="integrante-section">
         <div class="integrante-header">
-          <!-- ERROR INTENCIONAL #1: img sin alt -->
-          <img src="https://api.dicebear.com/7.x/initials/svg?seed=CH&backgroundColor=6366f1" class="integrante-avatar" width="48" height="48">
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=CH&backgroundColor=6366f1" class="integrante-avatar"
+            width="48" height="48" alt="Avatar de Champi">
           <div>
             <h3 class="integrante-name">Champi</h3>
             <p class="integrante-role">Arquitecto HTML/A11y</p>
@@ -175,9 +179,12 @@
                 y refactoring, roles del equipo XP y ciclo de vida iterativo.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: HTML5, CSS3, Semántica">
-                <li>HTML5</li><li>CSS3</li><li>ARIA</li><li>SEO</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>ARIA</li>
+                <li>SEO</li>
               </ul>
-              <a href="../Champi/index.html" class="card-link" aria-label="Ver proyecto de Metodología XP de Champi">
+              <a href="Champi/index.html" class="card-link" aria-label="Ver proyecto de Metodología XP de Champi">
                 Ver proyecto <span aria-hidden="true">&#8594;</span>
               </a>
             </div>
@@ -189,17 +196,18 @@
             </div>
             <div class="card-body">
               <div class="card-meta">
-                <!-- ERROR INTENCIONAL #3: texto con bajo contraste (color claro sobre fondo claro) -->
-                <span class="tag tag-lowcontrast">Valores XP</span>
+                <span class="tag tag-values">Valores XP</span>
                 <span class="card-year">2025</span>
               </div>
               <h4 id="champi-p2" class="card-title">Los 5 Valores de XP</h4>
               <p class="card-desc">
-                Comunicación, simplicidad, retroalimentación, valentía y respeto como pilares 
+                Comunicación, simplicidad, retroalimentación, valentía y respeto como pilares
                 fundamentales del desarrollo ágil con Extreme Programming.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: HTML5 semántico, data-* attributes">
-                <li>HTML5</li><li>data-*</li><li>A11y</li>
+                <li>HTML5</li>
+                <li>data-*</li>
+                <li>A11y</li>
               </ul>
             </div>
           </article>
@@ -219,7 +227,9 @@
                 Roles: cliente, programador, tester, coach y tracker.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: HTML5, listas ordenadas, semántica">
-                <li>HTML5</li><li>CSS Grid</li><li>Semántica</li>
+                <li>HTML5</li>
+                <li>CSS Grid</li>
+                <li>Semántica</li>
               </ul>
             </div>
           </article>
@@ -229,8 +239,8 @@
       <!-- ============= MELGAREJO ============= -->
       <div id="integrante-melgarejo" class="integrante-section">
         <div class="integrante-header">
-          <!-- ERROR INTENCIONAL #1 repetido: img sin alt -->
-          <img src="https://api.dicebear.com/7.x/initials/svg?seed=RM&backgroundColor=0ea5e9" class="integrante-avatar" width="48" height="48">
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=RM&backgroundColor=0ea5e9" class="integrante-avatar"
+            width="48" height="48" alt="Avatar de Melgarejo">
           <div>
             <h3 class="integrante-name">Melgarejo</h3>
             <p class="integrante-role">Ingeniero CSS/Render</p>
@@ -250,13 +260,15 @@
               </div>
               <h4 id="melg-p1" class="card-title">Sistema de Registro Académico</h4>
               <p class="card-desc">
-                Construcción de formularios accesibles, interfaz adaptable y validaciones 
+                Construcción de formularios accesibles, interfaz adaptable y validaciones
                 en tiempo real para gestión académica universitaria.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: HTML5, CSS, JavaScript">
-                <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
               </ul>
-              <a href="../Melgarejo/index.html" class="card-link" aria-label="Ver portfolio de Melgarejo">
+              <a href="Melgarejo/index.html" class="card-link" aria-label="Ver portfolio de Melgarejo">
                 Ver proyecto <span aria-hidden="true">&#8594;</span>
               </a>
             </div>
@@ -276,7 +288,9 @@
                 Panel de monitoreo con filtros, resúmenes y reportes para soporte de decisiones empresariales.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: SQL, Dashboard, Reportes">
-                <li>SQL</li><li>Dashboard</li><li>Reportes</li>
+                <li>SQL</li>
+                <li>Dashboard</li>
+                <li>Reportes</li>
               </ul>
             </div>
           </article>
@@ -295,7 +309,9 @@
                 Mensajería concurrente para experimentar arquitectura de red y comunicación de baja latencia.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: Sockets, TCP/IP, Concurrencia">
-                <li>Sockets</li><li>TCP/IP</li><li>Threads</li>
+                <li>Sockets</li>
+                <li>TCP/IP</li>
+                <li>Threads</li>
               </ul>
             </div>
           </article>
@@ -305,8 +321,8 @@
       <!-- ============= POVES ============= -->
       <div id="integrante-poves" class="integrante-section">
         <div class="integrante-header">
-          <!-- ERROR INTENCIONAL #1 repetido: img sin alt -->
-          <img src="https://api.dicebear.com/7.x/initials/svg?seed=AP&backgroundColor=10b981" class="integrante-avatar" width="48" height="48">
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=AP&backgroundColor=10b981" class="integrante-avatar"
+            width="48" height="48" alt="Avatar de Poves">
           <div>
             <h3 class="integrante-name">Poves</h3>
             <p class="integrante-role">Validador/SEO</p>
@@ -330,9 +346,11 @@
                 diseño responsivo y accesibilidad WCAG 2.1.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: HTML5, CSS Grid, JavaScript">
-                <li>HTML5</li><li>CSS Grid</li><li>JavaScript</li>
+                <li>HTML5</li>
+                <li>CSS Grid</li>
+                <li>JavaScript</li>
               </ul>
-              <a href="../Poves/index.html" class="card-link" aria-label="Ver portfolio de Poves">
+              <a href="Poves/index.html" class="card-link" aria-label="Ver portfolio de Poves">
                 Ver proyecto <span aria-hidden="true">&#8594;</span>
               </a>
             </div>
@@ -352,7 +370,9 @@
                 Sistema con PostgreSQL, procedimientos almacenados y reportes dinámicos por filtros.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: PostgreSQL, SQL, PL/pgSQL">
-                <li>PostgreSQL</li><li>SQL</li><li>PL/pgSQL</li>
+                <li>PostgreSQL</li>
+                <li>SQL</li>
+                <li>PL/pgSQL</li>
               </ul>
             </div>
           </article>
@@ -371,7 +391,9 @@
                 Mensajería punto a punto con sockets TCP/IP, hilos concurrentes y cifrado básico.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: Python, Sockets, TCP/IP">
-                <li>Python</li><li>Sockets</li><li>TCP/IP</li>
+                <li>Python</li>
+                <li>Sockets</li>
+                <li>TCP/IP</li>
               </ul>
             </div>
           </article>
@@ -391,7 +413,10 @@
                 navegación por teclado y modo de alto contraste. Cumple WCAG&nbsp;2.1 nivel AA.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: HTML5 Semántico, ARIA, WCAG">
-                <li>HTML5</li><li>ARIA</li><li>WCAG 2.1</li><li>:focus-visible</li>
+                <li>HTML5</li>
+                <li>ARIA</li>
+                <li>WCAG 2.1</li>
+                <li>:focus-visible</li>
               </ul>
             </div>
           </article>
@@ -410,7 +435,9 @@
                 Simulación de planificación de CPU con FCFS, SJF y Round-Robin implementados en Java.
               </p>
               <ul class="tech-pills" aria-label="Tecnologías: Java, POO, Algoritmos">
-                <li>Java</li><li>POO</li><li>Algoritmos</li>
+                <li>Java</li>
+                <li>POO</li>
+                <li>Algoritmos</li>
               </ul>
             </div>
           </article>
@@ -434,21 +461,24 @@
           <div class="role-num" aria-hidden="true">01</div>
           <h3>Champi</h3>
           <p class="role-title">Arquitecto HTML/A11y</p>
-          <p class="role-desc">Semántica, aria-*, navegación por teclado (tabindex, :focus-visible). Garantiza estructura HTML correcta y accesible.</p>
+          <p class="role-desc">Semántica, aria-*, navegación por teclado (tabindex, :focus-visible). Garantiza
+            estructura HTML correcta y accesible.</p>
         </article>
 
         <article class="role-card" aria-label="Rol de Melgarejo: Ingeniero CSS/Render">
           <div class="role-num" aria-hidden="true">02</div>
           <h3>Melgarejo</h3>
           <p class="role-title">Ingeniero CSS/Render</p>
-          <p class="role-desc">Grid/Flex híbrido, clamp(), calc(), prefers-color-scheme, @container. Diseño responsivo y rendimiento visual.</p>
+          <p class="role-desc">Grid/Flex híbrido, clamp(), calc(), prefers-color-scheme, @container. Diseño responsivo y
+            rendimiento visual.</p>
         </article>
 
         <article class="role-card" aria-label="Rol de Poves: Validador/SEO">
           <div class="role-num" aria-hidden="true">03</div>
           <h3>Poves</h3>
           <p class="role-title">Validador/SEO</p>
-          <p class="role-desc">Lighthouse, WAVE, W3C, Can I Use, reporte de compatibilidad. Asegura estándares de calidad y posicionamiento.</p>
+          <p class="role-desc">Lighthouse, WAVE, W3C, Can I Use, reporte de compatibilidad. Asegura estándares de
+            calidad y posicionamiento.</p>
         </article>
       </div>
     </section>
@@ -458,7 +488,7 @@
   <!-- ======================================================
        FOOTER
        ====================================================== -->
-  <footer class="site-footer" role="contentinfo" aria-label="Pie de página">
+  <footer class="site-footer" aria-label="Pie de página">
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="#" class="logo" aria-label="Ir al inicio">
@@ -497,4 +527,5 @@
   </footer>
 
 </body>
+
 </html>
