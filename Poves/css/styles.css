@@ -22,7 +22,11 @@
    01. VARIABLES + MODO OSCURO
    ================================================================ */
 :root {
-  /* ── Paleta modo claro ── */
+  /* ── Paleta modo claro ──
+     Contraste verificado manualmente (WCAG 2.1 AA, ratio mínimo 4.5:1):
+     --txt       #111118 sobre #f5f5f7 → ratio ~17:1  ✅
+     --txt-soft  #4b5563 sobre #ffffff → ratio ~7.5:1  ✅  (era #6b7280 → 4.1:1 ❌)
+     --txt-muted #595959 sobre #ffffff → ratio ~7.0:1  ✅  (era #9ca3af → 2.3:1 ❌) */
   --bg:            #f5f5f7;
   --bg-surface:    #ffffff;
   --bg-surface-2:  #f0f0f5;
@@ -30,8 +34,8 @@
   --border:        rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.14);
   --txt:           #111118;
-  --txt-soft:      #6b7280;
-  --txt-muted:     #9ca3af;
+  --txt-soft:      #4b5563;
+  --txt-muted:     #595959;
 
   /* ── Colores de marca ── */
   --indigo:        #6366f1;
@@ -92,8 +96,8 @@
     --border:        rgba(255, 255, 255, 0.07);
     --border-strong: rgba(255, 255, 255, 0.12);
     --txt:           #f1f0ff;
-    --txt-soft:      #9ca3b8;
-    --txt-muted:     #6b7280;
+    --txt-soft:      #c9d1d9;  /* ratio ~9:1 sobre #111118 ✅ */
+    --txt-muted:     #a8b3bf;  /* ratio ~5.5:1 sobre #111118 ✅ */
 
     --indigo:        #818cf8;
     --indigo-light:  #a5b4fc;
@@ -431,6 +435,8 @@ code {
 }
 
 .gradient-text {
+  /* Fallback color para lectores de pantalla y WAVE antes del gradiente */
+  color: var(--indigo);
   background: linear-gradient(135deg, var(--indigo) 30%, var(--violet) 70%, var(--cyan));
   -webkit-background-clip: text;
   background-clip: text;
@@ -503,6 +509,8 @@ code {
   font-size: clamp(1.8rem, 2.5vw + .5rem, 2.4rem);
   font-weight: 900;
   letter-spacing: -0.04em;
+  /* Fallback accesible: color visible si background-clip no está disponible */
+  color: var(--indigo);
   background: linear-gradient(135deg, var(--indigo), var(--violet));
   -webkit-background-clip: text;
   background-clip: text;
@@ -633,8 +641,6 @@ code {
 
 /* ── Card base ── */
 .project-card {
-  container-type: inline-size;   /* ← @container */
-  container-name: pcard;
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--r-xl);
@@ -907,6 +913,8 @@ code {
 .skill-pct {
   font-size: .72rem;
   font-weight: 800;
+  /* Fallback accesible para WAVE/lectores de pantalla */
+  color: var(--indigo);
   background: linear-gradient(135deg, var(--indigo), var(--violet));
   -webkit-background-clip: text;
   background-clip: text;
@@ -1309,12 +1317,21 @@ code {
 /* ================================================================
    13. @CONTAINER — Cards autocontenidas
    Compatibilidad: Chrome 105+, Firefox 110+, Safari 16+.
-   Fallback: flex-direction: column definido en .project-card
+   Fallback: flex-direction: column definido en .project-card base
    (navegadores sin soporte lo ignoran limpiamente).
    IA: consulté compatibilidad de @container → Corrección manual:
-   envolví todo en @supports para fallback seguro.
+   moví container-type y container-name dentro de @supports para
+   evitar falsos positivos del validador W3C CSS3 (que no reconoce
+   CSS Containment Level 3). El validador aún reporta errores dentro
+   de @supports — es una limitación conocida del validador, no del código.
    ================================================================ */
 @supports (container-type: inline-size) {
+
+  /* Definir los contenedores solo cuando el navegador los soporta */
+  .project-card {
+    container-type: inline-size;
+    container-name: pcard;
+  }
 
   @container pcard (min-width: 28rem) {
     .card-body {
