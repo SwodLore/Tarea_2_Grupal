@@ -1,0 +1,724 @@
+/* ================================================
+   PASO 2: Variables CSS globales (:root)
+   Concepto: Unidades relativas, tipografía adaptable,
+   propiedades lógicas (margin-inline, padding-block)
+   ================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap');
+
+:root {
+  /* Paleta de colores */
+  --color-bg:         #0a0e1a;
+  --color-surface:    #111827;
+  --color-surface-2:  #1a2236;
+  --color-accent:     #00d4ff;
+  --color-accent-2:   #7c3aed;
+  --color-accent-warm:#f59e0b;
+  --color-text:       #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-border:     rgba(0, 212, 255, 0.15);
+
+  /* Tipografía fluida — cálculo documentado:
+     clamp(mínimo, preferido, máximo)
+     Para h1: mín=1.8rem, pref=4vw, máx=3.5rem
+     Para h2: mín=1.4rem, pref=3vw, máx=2.4rem
+     Para body: mín=0.95rem, pref=1.1vw, máx=1.1rem  */
+  --font-h1:   clamp(1.8rem, 4vw, 3.5rem);
+  --font-h2:   clamp(1.4rem, 3vw, 2.4rem);
+  --font-h3:   clamp(1.1rem, 2vw, 1.5rem);
+  --font-body: clamp(0.95rem, 1.1vw, 1.1rem);
+  --font-sm:   clamp(0.8rem, 0.9vw, 0.9rem);
+
+  /* Espaciado con calc() + variables — documentado:
+     --space-base = 1rem (16px base)
+     Los demás se derivan multiplicando la base */
+  --space-base: 1rem;
+  --space-xs:   calc(var(--space-base) * 0.5);    /* 8px  */
+  --space-sm:   calc(var(--space-base) * 0.75);   /* 12px */
+  --space-md:   calc(var(--space-base) * 1.5);    /* 24px */
+  --space-lg:   calc(var(--space-base) * 2.5);    /* 40px */
+  --space-xl:   calc(var(--space-base) * 4);      /* 64px */
+
+  /* Bordes y sombras */
+  --radius:     8px;
+  --radius-lg:  16px;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.2);
+
+  /* Transiciones */
+  --transition: 0.3s ease;
+
+  /* Fuentes */
+  --font-display: 'Syne', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+}
+
+/* ================================================
+   MODO OSCURO (Paso 4 — prefers-color-scheme)
+   ================================================ */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg:        #f0f4ff;
+    --color-surface:   #ffffff;
+    --color-surface-2: #e8eef8;
+    --color-accent:    #0070a8;
+    --color-accent-2:  #5b21b6;
+    --color-text:      #0f172a;
+    --color-text-muted:#475569;
+    --color-border:    rgba(0, 112, 168, 0.2);
+    --shadow-card:     0 4px 24px rgba(0, 0, 0, 0.1);
+    --shadow-glow:     0 0 20px rgba(0, 112, 168, 0.15);
+  }
+}
+
+/* ================================================
+   RESET Y BASE
+   ================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-display);
+  font-size: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  min-height: 100vh;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+/* ================================================
+   SKIP LINK — Accesibilidad
+   ================================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-base);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius);
+  font-weight: 700;
+  z-index: 9999;
+  transition: top var(--transition);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* ================================================
+   PASO 3: LAYOUT HÍBRIDO
+   CSS Grid para estructura principal (grid-template-areas)
+   Flexbox para componentes internos
+   Concepto: grid-area, place-items, flex-basis, flex-shrink
+   ================================================ */
+
+/* --- HEADER --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  /* Flexbox para distribuir logo y nav */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+  padding-inline: var(--space-lg);
+  gap: var(--space-md);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+}
+
+.logo-area h1 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.tagline {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.nav-list a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius);
+  transition: color var(--transition), background var(--transition);
+}
+
+.nav-list a:hover,
+.nav-list a:focus {
+  color: var(--color-accent);
+  background: rgba(0, 212, 255, 0.08);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* --- MAIN GRID (estructura principal) --- */
+main {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+}
+
+/* ---- HERO ---- */
+.hero {
+  /* Grid asimétrico para sección hero */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "texto visual";
+  align-items: center;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-content {
+  grid-area: texto;
+}
+
+.hero-visual {
+  grid-area: visual;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-block-end: var(--space-sm);
+}
+
+.hero h2 {
+  font-size: var(--font-h1);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-block-end: var(--space-md);
+}
+
+.hero-desc {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--color-text-muted);
+  max-width: 55ch;
+  margin-block-end: var(--space-lg);
+  overflow-wrap: break-word;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  padding: calc(var(--space-sm) + 2px) var(--space-lg);
+  border-radius: var(--radius);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.xp-badge {
+  width: clamp(100px, 14vw, 180px);
+  height: clamp(100px, 14vw, 180px);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: white;
+  font-family: var(--font-mono);
+  box-shadow: var(--shadow-glow), 0 0 60px rgba(124, 58, 237, 0.3);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+/* ---- SECCIONES GENERALES ---- */
+.section-card,
+.section-valores,
+.section-roles {
+  padding-block: var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-card h2,
+.section-valores h2,
+.section-roles h2 {
+  font-size: var(--font-h2);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-block-end: var(--space-sm);
+}
+
+.section-intro {
+  color: var(--color-text-muted);
+  max-width: 65ch;
+  margin-block-end: var(--space-lg);
+}
+
+/* ---- CARD GRID (Sección ¿Qué es XP?) ---- */
+.card-grid {
+  /* CSS Grid de 3 columnas adaptativa */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+}
+
+.info-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+.info-card h3 {
+  font-size: var(--font-h3);
+  color: var(--color-accent);
+  margin-block-end: var(--space-sm);
+}
+
+/* ---- VALORES GRID ---- */
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-sm);
+}
+
+.valor-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  text-align: center;
+  cursor: default;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.valor-item:hover,
+.valor-item:focus {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.valor-icon {
+  display: block;
+  font-size: 2rem;
+  margin-block-end: var(--space-sm);
+}
+
+.valor-item h3 {
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+  margin-block-end: var(--space-xs);
+  color: var(--color-accent);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.valor-item p {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.role-card p,
+.practica-list span,
+.info-card p,
+.ciclo-content p {
+  overflow-wrap: break-word;
+}
+
+/* ---- PRÁCTICAS LAYOUT (3 columnas Grid) ---- */
+.practicas-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+}
+
+.practica-group {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  /* Container query context */
+  container-type: inline-size;
+  container-name: practica;
+}
+
+.group-title {
+  font-size: var(--font-h3);
+  color: var(--color-accent-warm);
+  margin-block-end: var(--space-md);
+  padding-block-end: var(--space-xs);
+  border-bottom: 2px solid var(--color-accent-warm);
+}
+
+.practica-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.practica-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-block: var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.practica-list li:last-child {
+  border-bottom: none;
+}
+
+.practica-list strong {
+  font-size: var(--font-sm);
+  color: var(--color-text);
+}
+
+.practica-list span {
+  font-size: calc(var(--font-sm) * 0.92);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* ---- CONTAINER QUERY para .practica-group ----
+   Paso 4: @container para componentes autocontenidos
+   Si el contenedor mide menos de 240px, la lista
+   cambia su visualización a más compacta.
+   Fallback: sin @container el layout sigue funcionando
+   gracias al flex-direction: column ya establecido.
+   Nota: se añadió container-type e container-name en el padre.
+*/
+@container practica (max-width: 240px) {
+  .practica-list li {
+    padding-block: 2px;
+  }
+
+  .group-title {
+    font-size: 0.9rem;
+  }
+}
+
+/* ---- ROLES — Flexbox ---- */
+.roles-flex {
+  /* Flexbox para filas de tarjetas (flex-basis, flex-shrink) */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.role-card {
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 280px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  position: relative;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent-2);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+}
+
+.role-num {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(0, 212, 255, 0.12);
+  line-height: 1;
+  margin-block-end: var(--space-sm);
+}
+
+.role-card h3 {
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-weight: 700;
+  color: var(--color-accent-2);
+  margin-block-end: var(--space-xs);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.role-card p {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ---- CICLO DE VIDA ---- */
+.ciclo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  counter-reset: ciclo-counter;
+}
+
+.ciclo-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: var(--space-md);
+  align-items: start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  transition: border-color var(--transition);
+}
+
+.ciclo-item:hover {
+  border-color: var(--color-accent);
+}
+
+.ciclo-num {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.ciclo-content h3 {
+  font-size: var(--font-h3);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-block-end: var(--space-xs);
+}
+
+.ciclo-content p {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ---- FOOTER ---- */
+.site-footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-lg);
+  margin-block-start: var(--space-xl);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.footer-credits {
+  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+}
+
+/* ================================================
+   PASO 4: MEDIA QUERIES — Breakpoints
+   Concepto: Media Queries vs Container Queries,
+   renderizado condicional
+   ================================================ */
+
+/* --- TABLET: max-width 1024px --- */
+@media (max-width: 1024px) {
+  .header-inner {
+    padding-inline: var(--space-md);
+  }
+
+  main {
+    padding-inline: var(--space-md);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "texto"
+      "visual";
+    text-align: center;
+    gap: var(--space-lg);
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-desc {
+    margin-inline: auto;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .valores-grid {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+
+  .practicas-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .roles-flex {
+    justify-content: center;
+  }
+
+  .role-card {
+    flex: 1 1 calc(33% - var(--space-md));
+  }
+}
+
+/* --- MÓVIL: max-width 640px --- */
+@media (max-width: 640px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-inline: var(--space-base);
+  }
+
+  .nav-list {
+    gap: var(--space-xs);
+  }
+
+  main {
+    padding-inline: var(--space-base);
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .valores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .practicas-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .roles-flex {
+    flex-direction: column;
+  }
+
+  .role-card {
+    flex: 1 1 100%;
+  }
+
+  .ciclo-item {
+    grid-template-columns: 44px 1fr;
+    gap: var(--space-sm);
+  }
+
+  .ciclo-num {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* --- MUY PEQUEÑO: max-width 380px --- */
+@media (max-width: 380px) {
+  .valores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-area h1 {
+    font-size: 1.1rem;
+  }
+
+  .tagline {
+    display: none;
+  }
+}
+
+/* ================================================
+   ACCESIBILIDAD — focus-visible
+   ================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
