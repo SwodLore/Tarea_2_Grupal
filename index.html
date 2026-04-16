@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ERROR INTENCIONAL #2: Falta meta description para SEO -->
+  <!-- <meta name="description" content="..."> REMOVIDO INTENCIONALMENTE -->
+
+  <meta name="author" content="Champi, Melgarejo, Poves — IS093A UNCP">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#6366f1">
+
+  <meta property="og:title" content="Galería de Proyectos Técnicos — Equipo IS093A">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+
+  <title>Galería de Proyectos Técnicos — Equipo IS093A</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Skip link para accesibilidad -->
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ======================================================
+       HEADER
+       ====================================================== -->
+  <header class="site-header" role="banner" aria-label="Encabezado del sitio">
+    <div class="header-inner">
+
+      <a href="#" class="logo" aria-label="Inicio — Galería de Proyectos">
+        <span class="logo-mark" aria-hidden="true">⚡</span>
+        <span class="logo-text">ProyectosIS<span class="logo-dot">.</span></span>
+      </a>
+
+      <nav role="navigation" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#galeria" class="nav-link">Galería</a></li>
+          <li><a href="#integrante-champi" class="nav-link">Champi</a></li>
+          <li><a href="#integrante-melgarejo" class="nav-link">Melgarejo</a></li>
+          <li><a href="#integrante-poves" class="nav-link">Poves</a></li>
+          <li><a href="#equipo" class="nav-link nav-cta">Equipo</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ======================================================
+       CONTENIDO PRINCIPAL
+       ====================================================== -->
+  <main id="contenido-principal" class="page-grid" role="main" aria-label="Contenido de la galería de proyectos">
+
+    <!-- ──────────────────────────────────────────────────── 
+         HERO
+         ──────────────────────────────────────────────────── -->
+    <section class="area-hero" aria-labelledby="hero-titulo">
+
+      <div class="hero-bg" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="grid-dots"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge" role="note">
+          <span class="badge-dot" aria-hidden="true"></span>
+          IS093A · Desarrollo de Aplicaciones Web · UNCP
+        </div>
+
+        <h1 id="hero-titulo" class="hero-titulo">
+          Galería de<br>
+          <span class="gradient-text">Proyectos Técnicos</span>
+        </h1>
+
+        <p class="hero-desc">
+          Colección de trabajos desarrollados por nuestro equipo durante el curso de 
+          Desarrollo de Aplicaciones Web. HTML5 semántico, CSS moderno y accesibilidad.
+        </p>
+
+        <div class="hero-actions" role="group" aria-label="Acciones principales">
+          <a href="#galeria" class="btn btn-primary">
+            Explorar proyectos
+            <span aria-hidden="true">&#8594;</span>
+          </a>
+          <a href="#equipo" class="btn btn-ghost">Conocer al equipo</a>
+        </div>
+
+        <div class="hero-stats" role="group" aria-label="Estadísticas del equipo">
+          <div class="stat">
+            <span class="stat-num" aria-hidden="true">3</span>
+            <span class="stat-label">Integrantes</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-num" aria-hidden="true">9+</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-num" aria-hidden="true">100%</span>
+            <span class="stat-label">HTML + CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <figure class="hero-visual" aria-hidden="true">
+        <div class="code-card">
+          <div class="code-card-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <pre class="code-preview"><code><span class="c-purple">const</span> <span class="c-blue">equipo</span> <span class="c-white">=</span> <span class="c-yellow">{</span>
+  <span class="c-green">curso</span><span class="c-white">:</span> <span class="c-orange">"IS093A"</span><span class="c-white">,</span>
+  <span class="c-green">integrantes</span><span class="c-white">:</span> <span class="c-yellow">[</span>
+    <span class="c-orange">"Champi"</span><span class="c-white">,</span>
+    <span class="c-orange">"Melgarejo"</span><span class="c-white">,</span>
+    <span class="c-orange">"Poves"</span>
+  <span class="c-yellow">]</span><span class="c-white">,</span>
+  <span class="c-green">a11y</span><span class="c-white">:</span> <span class="c-purple">true</span>
+<span class="c-yellow">}</span><span class="c-white">;</span></code></pre>
+        </div>
+        <div class="floating-badge fb-html">HTML5</div>
+        <div class="floating-badge fb-css">CSS3</div>
+        <div class="floating-badge fb-grid">Grid</div>
+      </figure>
+
+    </section>
+
+    <!-- ──────────────────────────────────────────────────── 
+         GALERÍA DE PROYECTOS
+         ──────────────────────────────────────────────────── -->
+    <section id="galeria" class="area-galeria" aria-labelledby="titulo-galeria">
+
+      <div class="section-header">
+        <span class="section-tag" aria-hidden="true">// Galería</span>
+        <h2 id="titulo-galeria">Proyectos del Equipo</h2>
+        <p class="section-desc">Trabajos individuales de cada integrante del equipo IS093A</p>
+      </div>
+
+      <!-- ============= CHAMPI ============= -->
+      <div id="integrante-champi" class="integrante-section">
+        <div class="integrante-header">
+          <!-- ERROR INTENCIONAL #1: img sin alt -->
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=CH&backgroundColor=6366f1" class="integrante-avatar" width="48" height="48">
+          <div>
+            <h3 class="integrante-name">Champi</h3>
+            <p class="integrante-role">Arquitecto HTML/A11y</p>
+          </div>
+        </div>
+
+        <div class="projects-masonry">
+          <article class="project-card card-featured" aria-labelledby="champi-p1">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-thumb thumb-xp" aria-hidden="true">
+              <span class="thumb-icon">⚡</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-method">Metodología</span>
+                <span class="card-year">2025</span>
+              </div>
+              <h4 id="champi-p1" class="card-title">Metodología XP — Extreme Programming</h4>
+              <p class="card-desc">
+                Guía integral sobre Extreme Programming: valores (comunicación, simplicidad,
+                retroalimentación, valentía, respeto), prácticas esenciales como TDD, Pair Programming
+                y refactoring, roles del equipo XP y ciclo de vida iterativo.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: HTML5, CSS3, Semántica">
+                <li>HTML5</li><li>CSS3</li><li>ARIA</li><li>SEO</li>
+              </ul>
+              <a href="../Champi/index.html" class="card-link" aria-label="Ver proyecto de Metodología XP de Champi">
+                Ver proyecto <span aria-hidden="true">&#8594;</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="champi-p2">
+            <div class="card-thumb thumb-values" aria-hidden="true">
+              <span class="thumb-icon">💬</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <!-- ERROR INTENCIONAL #3: texto con bajo contraste (color claro sobre fondo claro) -->
+                <span class="tag tag-lowcontrast">Valores XP</span>
+                <span class="card-year">2025</span>
+              </div>
+              <h4 id="champi-p2" class="card-title">Los 5 Valores de XP</h4>
+              <p class="card-desc">
+                Comunicación, simplicidad, retroalimentación, valentía y respeto como pilares 
+                fundamentales del desarrollo ágil con Extreme Programming.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: HTML5 semántico, data-* attributes">
+                <li>HTML5</li><li>data-*</li><li>A11y</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="champi-p3">
+            <div class="card-thumb thumb-cycle" aria-hidden="true">
+              <span class="thumb-icon">🔄</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-process">Proceso</span>
+                <span class="card-year">2025</span>
+              </div>
+              <h4 id="champi-p3" class="card-title">Ciclo de Vida y Roles XP</h4>
+              <p class="card-desc">
+                Las 5 fases del ciclo: exploración, planificación, iteraciones, producción y muerte del proyecto.
+                Roles: cliente, programador, tester, coach y tracker.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: HTML5, listas ordenadas, semántica">
+                <li>HTML5</li><li>CSS Grid</li><li>Semántica</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============= MELGAREJO ============= -->
+      <div id="integrante-melgarejo" class="integrante-section">
+        <div class="integrante-header">
+          <!-- ERROR INTENCIONAL #1 repetido: img sin alt -->
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=RM&backgroundColor=0ea5e9" class="integrante-avatar" width="48" height="48">
+          <div>
+            <h3 class="integrante-name">Melgarejo</h3>
+            <p class="integrante-role">Ingeniero CSS/Render</p>
+          </div>
+        </div>
+
+        <div class="projects-masonry">
+          <article class="project-card card-featured" aria-labelledby="melg-p1">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-thumb thumb-web" aria-hidden="true">
+              <span class="thumb-icon">&#60;/&#62;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-web">Frontend</span>
+                <span class="card-year">2025</span>
+              </div>
+              <h4 id="melg-p1" class="card-title">Sistema de Registro Académico</h4>
+              <p class="card-desc">
+                Construcción de formularios accesibles, interfaz adaptable y validaciones 
+                en tiempo real para gestión académica universitaria.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: HTML5, CSS, JavaScript">
+                <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+              </ul>
+              <a href="../Melgarejo/index.html" class="card-link" aria-label="Ver portfolio de Melgarejo">
+                Ver proyecto <span aria-hidden="true">&#8594;</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="melg-p2">
+            <div class="card-thumb thumb-db" aria-hidden="true">
+              <span class="thumb-icon">&#9776;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-db">Data</span>
+                <span class="card-year">2025</span>
+              </div>
+              <h4 id="melg-p2" class="card-title">Dashboard de Inventario</h4>
+              <p class="card-desc">
+                Panel de monitoreo con filtros, resúmenes y reportes para soporte de decisiones empresariales.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: SQL, Dashboard, Reportes">
+                <li>SQL</li><li>Dashboard</li><li>Reportes</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="melg-p3">
+            <div class="card-thumb thumb-net" aria-hidden="true">
+              <span class="thumb-icon">&#8644;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-net">Sistemas</span>
+                <span class="card-year">2025</span>
+              </div>
+              <h4 id="melg-p3" class="card-title">Chat P2P con Sockets</h4>
+              <p class="card-desc">
+                Mensajería concurrente para experimentar arquitectura de red y comunicación de baja latencia.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: Sockets, TCP/IP, Concurrencia">
+                <li>Sockets</li><li>TCP/IP</li><li>Threads</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============= POVES ============= -->
+      <div id="integrante-poves" class="integrante-section">
+        <div class="integrante-header">
+          <!-- ERROR INTENCIONAL #1 repetido: img sin alt -->
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=AP&backgroundColor=10b981" class="integrante-avatar" width="48" height="48">
+          <div>
+            <h3 class="integrante-name">Poves</h3>
+            <p class="integrante-role">Validador/SEO</p>
+          </div>
+        </div>
+
+        <div class="projects-masonry">
+          <article class="project-card card-featured" aria-labelledby="poves-p1">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-thumb thumb-web" aria-hidden="true">
+              <span class="thumb-icon">&#60;/&#62;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-web">Web Frontend</span>
+                <span class="card-year">2024</span>
+              </div>
+              <h4 id="poves-p1" class="card-title">Sistema de Registro Académico</h4>
+              <p class="card-desc">
+                Aplicación web para gestión de matrículas universitarias con validación en tiempo real,
+                diseño responsivo y accesibilidad WCAG 2.1.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: HTML5, CSS Grid, JavaScript">
+                <li>HTML5</li><li>CSS Grid</li><li>JavaScript</li>
+              </ul>
+              <a href="../Poves/index.html" class="card-link" aria-label="Ver portfolio de Poves">
+                Ver proyecto <span aria-hidden="true">&#8594;</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="poves-p2">
+            <div class="card-thumb thumb-db" aria-hidden="true">
+              <span class="thumb-icon">&#9776;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-db">Base de Datos</span>
+                <span class="card-year">2024</span>
+              </div>
+              <h4 id="poves-p2" class="card-title">Gestión de Inventario</h4>
+              <p class="card-desc">
+                Sistema con PostgreSQL, procedimientos almacenados y reportes dinámicos por filtros.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: PostgreSQL, SQL, PL/pgSQL">
+                <li>PostgreSQL</li><li>SQL</li><li>PL/pgSQL</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="poves-p3">
+            <div class="card-thumb thumb-net" aria-hidden="true">
+              <span class="thumb-icon">&#8644;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-net">Redes</span>
+                <span class="card-year">2023</span>
+              </div>
+              <h4 id="poves-p3" class="card-title">Chat P2P en Python</h4>
+              <p class="card-desc">
+                Mensajería punto a punto con sockets TCP/IP, hilos concurrentes y cifrado básico.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: Python, Sockets, TCP/IP">
+                <li>Python</li><li>Sockets</li><li>TCP/IP</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card card-wide" aria-labelledby="poves-p4">
+            <div class="card-thumb thumb-a11y" aria-hidden="true">
+              <span class="thumb-icon">&#9775;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-a11y">Accesibilidad</span>
+                <span class="card-year">2025</span>
+              </div>
+              <h4 id="poves-p4" class="card-title">Portal Inclusivo UNCP</h4>
+              <p class="card-desc">
+                Rediseño accesible de portal universitario con soporte para lectores de pantalla,
+                navegación por teclado y modo de alto contraste. Cumple WCAG&nbsp;2.1 nivel AA.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: HTML5 Semántico, ARIA, WCAG">
+                <li>HTML5</li><li>ARIA</li><li>WCAG 2.1</li><li>:focus-visible</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="poves-p5">
+            <div class="card-thumb thumb-sys" aria-hidden="true">
+              <span class="thumb-icon">&#9965;</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tag tag-sys">Sistemas</span>
+                <span class="card-year">2023</span>
+              </div>
+              <h4 id="poves-p5" class="card-title">Simulador de Procesos OS</h4>
+              <p class="card-desc">
+                Simulación de planificación de CPU con FCFS, SJF y Round-Robin implementados en Java.
+              </p>
+              <ul class="tech-pills" aria-label="Tecnologías: Java, POO, Algoritmos">
+                <li>Java</li><li>POO</li><li>Algoritmos</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ──────────────────────────────────────────────────── 
+         EQUIPO Y ROLES
+         ──────────────────────────────────────────────────── -->
+    <section id="equipo" class="area-equipo" aria-labelledby="titulo-equipo">
+      <div class="section-header">
+        <span class="section-tag" aria-hidden="true">// Equipo</span>
+        <h2 id="titulo-equipo">Roles Técnicos del Equipo</h2>
+        <p class="section-desc">Cada integrante con una responsabilidad definida en el proceso de desarrollo</p>
+      </div>
+
+      <div class="roles-grid">
+        <article class="role-card" aria-label="Rol de Champi: Arquitecto HTML/A11y">
+          <div class="role-num" aria-hidden="true">01</div>
+          <h3>Champi</h3>
+          <p class="role-title">Arquitecto HTML/A11y</p>
+          <p class="role-desc">Semántica, aria-*, navegación por teclado (tabindex, :focus-visible). Garantiza estructura HTML correcta y accesible.</p>
+        </article>
+
+        <article class="role-card" aria-label="Rol de Melgarejo: Ingeniero CSS/Render">
+          <div class="role-num" aria-hidden="true">02</div>
+          <h3>Melgarejo</h3>
+          <p class="role-title">Ingeniero CSS/Render</p>
+          <p class="role-desc">Grid/Flex híbrido, clamp(), calc(), prefers-color-scheme, @container. Diseño responsivo y rendimiento visual.</p>
+        </article>
+
+        <article class="role-card" aria-label="Rol de Poves: Validador/SEO">
+          <div class="role-num" aria-hidden="true">03</div>
+          <h3>Poves</h3>
+          <p class="role-title">Validador/SEO</p>
+          <p class="role-desc">Lighthouse, WAVE, W3C, Can I Use, reporte de compatibilidad. Asegura estándares de calidad y posicionamiento.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       FOOTER
+       ====================================================== -->
+  <footer class="site-footer" role="contentinfo" aria-label="Pie de página">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo" aria-label="Ir al inicio">
+          <span class="logo-mark" aria-hidden="true">⚡</span>
+          <span class="logo-text">ProyectosIS<span class="logo-dot">.</span></span>
+        </a>
+        <p>Galería de Proyectos Técnicos · IS093A · UNCP 2025</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navegación del pie de página">
+        <p class="footer-nav-title">Secciones</p>
+        <ul>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#integrante-champi">Champi</a></li>
+          <li><a href="#integrante-melgarejo">Melgarejo</a></li>
+          <li><a href="#integrante-poves">Poves</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+        </ul>
+      </nav>
+
+      <address class="footer-contact">
+        <p class="footer-nav-title">Universidad</p>
+        <p>Universidad Nacional del Centro del Perú</p>
+        <p>Facultad de Ingeniería de Sistemas</p>
+      </address>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        <small>&copy; 2025 Champi · Melgarejo · Poves — IS093A Desarrollo de Aplicaciones Web · UNCP</small>
+      </p>
+      <p class="footer-made">
+        <small>Hecho con HTML5 + CSS Grid + Flexbox · Sin JavaScript</small>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
