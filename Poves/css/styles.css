@@ -1,0 +1,1338 @@
+/* ================================================================
+   PORTAFOLIO TÉCNICO — POVES | IS093A Semana 2
+   ================================================================
+   Orden:
+   01. Variables (:root) + Modo oscuro
+   02. Reset
+   03. Accesibilidad global (skip-link, focus-visible, visually-hidden)
+   04. Header + Navegación
+   05. Layout principal (CSS Grid — grid-template-areas)
+   06. Hero
+   07. Proyectos (Grid masonry + cards)
+   08. Sidebar — Habilidades
+   09. Sobre mí
+   10. Footer
+   11. @media — Tablet (≤ 1024px)
+   12. @media — Móvil (≤ 640px)
+   13. @container — Cards autocontenidas
+   ================================================================ */
+
+
+/* ================================================================
+   01. VARIABLES + MODO OSCURO
+   ================================================================ */
+:root {
+  /* ── Paleta modo claro ── */
+  --bg:            #f5f5f7;
+  --bg-surface:    #ffffff;
+  --bg-surface-2:  #f0f0f5;
+  --bg-glass:      rgba(255, 255, 255, 0.72);
+  --border:        rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --txt:           #111118;
+  --txt-soft:      #6b7280;
+  --txt-muted:     #9ca3af;
+
+  /* ── Colores de marca ── */
+  --indigo:        #6366f1;
+  --indigo-light:  #818cf8;
+  --indigo-hover:  #4f46e5;
+  --violet:        #8b5cf6;
+  --cyan:          #06b6d4;
+  --shadow-color:  rgba(99, 102, 241, 0.12);
+  --shadow-card:   0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.06);
+  --shadow-hover:  0 8px 32px rgba(99, 102, 241, 0.18);
+
+  /* ── Colores de categorías ── */
+  --c-web:   #ede9fe; --c-web-t:   #5b21b6;
+  --c-db:    #d1fae5; --c-db-t:    #065f46;
+  --c-net:   #fef9c3; --c-net-t:   #92400e;
+  --c-a11y:  #dbeafe; --c-a11y-t:  #1e40af;
+  --c-sys:   #ffe4e6; --c-sys-t:   #9f1239;
+
+  /* ── Tipografía fluida — clamp(min, ideal, max)
+     Cálculo manual de la parte preferida:
+       - --t-hero: mínimo 2.4rem en 320px, sube ~5vw hasta 4.5rem en 1440px
+       - --t-h2:   mínimo 1.6rem, parte preferida 2.5vw cubre tablets bien
+       - --t-body: mínimo 0.9rem garantiza legibilidad en pantallas pequeñas
+     IA: pregunté alternativas para calcular el valor preferido de clamp() →
+     Corrección manual: verifiqué cada valor en DevTools a 375px y 1280px ── */
+  --t-hero:  clamp(2.4rem,  5vw + 1rem,   4.5rem);
+  --t-h2:    clamp(1.6rem,  2.5vw + .5rem, 2.4rem);
+  --t-h3:    clamp(1.05rem, 1.2vw + .4rem, 1.3rem);
+  --t-body:  clamp(0.9rem,  .8vw + .5rem,  1.05rem);
+  --t-small: clamp(0.78rem, .5vw + .4rem,  0.875rem);
+
+  /* ── Espaciado con calc() ── */
+  --sp:      1rem;
+  --sp-xs:   calc(var(--sp) * .25);
+  --sp-sm:   calc(var(--sp) * .5);
+  --sp-md:   var(--sp);
+  --sp-lg:   calc(var(--sp) * 1.5);
+  --sp-xl:   calc(var(--sp) * 2.5);
+  --sp-2xl:  calc(var(--sp) * 4);
+  --sp-3xl:  calc(var(--sp) * 6);
+
+  /* ── Estructura ── */
+  --max-w:   78rem;
+  --r-sm:    .375rem;
+  --r-md:    .75rem;
+  --r-lg:    1.25rem;
+  --r-xl:    1.75rem;
+  --ease:    .22s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ── Modo oscuro — solo variables, transición automática ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:            #09090f;
+    --bg-surface:    #111118;
+    --bg-surface-2:  #1a1a28;
+    --bg-glass:      rgba(17, 17, 24, 0.82);
+    --border:        rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --txt:           #f1f0ff;
+    --txt-soft:      #9ca3b8;
+    --txt-muted:     #6b7280;
+
+    --indigo:        #818cf8;
+    --indigo-light:  #a5b4fc;
+    --indigo-hover:  #6366f1;
+    --violet:        #a78bfa;
+    --cyan:          #22d3ee;
+    --shadow-color:  rgba(129, 140, 248, 0.15);
+    --shadow-card:   0 1px 3px rgba(0,0,0,.3), 0 4px 20px rgba(0,0,0,.3);
+    --shadow-hover:  0 8px 40px rgba(129, 140, 248, 0.25);
+
+    --c-web:   #2e1065; --c-web-t:   #c4b5fd;
+    --c-db:    #064e3b; --c-db-t:    #6ee7b7;
+    --c-net:   #451a03; --c-net-t:   #fcd34d;
+    --c-a11y:  #1e3a5f; --c-a11y-t:  #93c5fd;
+    --c-sys:   #4c0519; --c-sys-t:   #fda4af;
+  }
+}
+
+
+/* ================================================================
+   02. RESET
+   ================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto,
+               'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--t-body);
+  line-height: 1.65;
+  color: var(--txt);
+  background-color: var(--bg);
+  transition: background-color var(--ease), color var(--ease);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-inline-size: 100%; display: block; }
+a { color: var(--indigo); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { list-style: none; }
+address { font-style: normal; }
+code {
+  font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+  font-size: .9em;
+  background-color: var(--bg-surface-2);
+  padding-inline: .35em;
+  border-radius: var(--r-sm);
+  color: var(--violet);
+}
+
+
+/* ================================================================
+   03. ACCESIBILIDAD GLOBAL
+   ================================================================ */
+
+/* Skip link: oculto hasta recibir foco */
+.skip-link {
+  position: absolute;
+  inset-block-start: -4rem;
+  inset-inline-start: 1rem;
+  padding: var(--sp-sm) var(--sp-md);
+  background-color: var(--indigo);
+  color: #fff;
+  font-weight: 700;
+  border-radius: var(--r-sm);
+  z-index: 9999;
+  transition: inset-block-start var(--ease);
+  text-decoration: none;
+}
+.skip-link:focus {
+  inset-block-start: 1rem;
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+/* Contenido visible solo para lectores de pantalla */
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus visible mejorado para teclado */
+:focus-visible {
+  outline: 2.5px solid var(--indigo);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+
+/* ================================================================
+   04. HEADER + NAVEGACIÓN
+   ================================================================ */
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 200;
+  background-color: var(--bg-glass);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-block-end: 1px solid var(--border);
+  transition: background-color var(--ease), border-color var(--ease);
+}
+
+.header-inner {
+  display: flex;                   /* ← Flexbox: header interno */
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-md);
+  max-inline-size: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--sp-xl);
+  padding-block: var(--sp-md);
+}
+
+/* Logo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  color: var(--txt);
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+}
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  color: #fff;
+  border-radius: var(--r-sm);
+  font-size: 1.1rem;
+  margin-inline-end: .35rem;
+}
+.logo-dot { color: var(--indigo); }
+
+/* Nav */
+.nav-list {
+  display: flex;                   /* ← Flexbox: lista de nav */
+  align-items: center;
+  gap: var(--sp-xs);
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  padding: var(--sp-xs) var(--sp-sm);
+  border-radius: var(--r-sm);
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--txt-soft);
+  transition: color var(--ease), background-color var(--ease);
+  text-decoration: none;
+}
+.nav-link:hover {
+  color: var(--txt);
+  background-color: var(--bg-surface-2);
+  text-decoration: none;
+}
+
+.nav-cta {
+  margin-inline-start: var(--sp-sm);
+  padding: var(--sp-xs) var(--sp-md);
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  color: #fff !important;
+  border-radius: var(--r-sm);
+}
+.nav-cta:hover {
+  background: linear-gradient(135deg, var(--indigo-hover), var(--indigo));
+  color: #fff !important;
+  background-color: transparent;
+}
+
+
+/* ================================================================
+   05. LAYOUT PRINCIPAL — CSS Grid con grid-template-areas
+   Diseño en papel (documentación manual del grid):
+   ┌─────────────────────┬──────────────┐
+   │        hero         │     hero     │
+   ├─────────────────────┼──────────────┤
+   │      projects       │   sidebar    │
+   ├─────────────────────┴──────────────┤
+   │              about                 │
+   ├────────────────────────────────────┤
+   │              footer                │
+   └────────────────────────────────────┘
+   ================================================================ */
+.page-grid {
+  display: grid;
+  grid-template-areas:
+    "hero     hero"
+    "projects sidebar"
+    "about    about"
+    "footer   footer";
+  grid-template-columns: 1fr 22rem;
+  grid-template-rows: auto;
+  column-gap: var(--sp-2xl);
+  max-inline-size: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--sp-xl);
+}
+
+.area-hero      { grid-area: hero; }
+.area-proyectos { grid-area: projects; }
+.area-sidebar   { grid-area: sidebar; }
+.area-about     { grid-area: about; }
+.area-footer    { grid-area: footer; }
+
+
+/* ================================================================
+   06. HERO
+   ================================================================ */
+.area-hero {
+  position: relative;
+  display: flex;                   /* ← Flexbox: layout hero */
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2xl);
+  padding-block: var(--sp-3xl) var(--sp-2xl);
+  overflow: hidden;
+}
+
+/* Fondo decorativo con blobs */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+}
+.blob-1 {
+  inline-size: 36rem;
+  block-size: 36rem;
+  background: radial-gradient(circle, var(--indigo), transparent 70%);
+  inset-block-start: -12rem;
+  inset-inline-end: -8rem;
+}
+.blob-2 {
+  inline-size: 24rem;
+  block-size: 24rem;
+  background: radial-gradient(circle, var(--violet), transparent 70%);
+  inset-block-end: -6rem;
+  inset-inline-start: 10rem;
+  opacity: 0.2;
+}
+.blob-3 {
+  inline-size: 16rem;
+  block-size: 16rem;
+  background: radial-gradient(circle, var(--cyan), transparent 70%);
+  inset-block-start: 4rem;
+  inset-inline-start: -4rem;
+  opacity: 0.15;
+}
+
+.grid-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border-strong) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  opacity: 0.6;
+}
+
+/* Contenido del hero */
+/* IA: consulté diferencia entre flex shorthand y propiedades individuales →
+   Corrección manual: separé flex-basis explícito para documentar cada propiedad */
+.hero-content {
+  position: relative;
+  flex-grow: 1;           /* ← Paso 3: flex-grow */
+  flex-shrink: 1;         /* ← Paso 3: flex-shrink explícito */
+  flex-basis: 30rem;      /* ← Paso 3: flex-basis explícito (base antes de grow/shrink) */
+  max-inline-size: 42rem;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--indigo);
+  background-color: color-mix(in srgb, var(--indigo) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--indigo) 25%, transparent);
+  padding: var(--sp-xs) var(--sp-md);
+  border-radius: 999px;
+  margin-block-end: var(--sp-lg);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.badge-dot {
+  inline-size: .5rem;
+  block-size: .5rem;
+  border-radius: 50%;
+  background-color: var(--indigo);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .5; transform: scale(1.4); }
+}
+
+.hero-titulo {
+  font-size: var(--t-hero);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-block-end: var(--sp-lg);
+  color: var(--txt);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--indigo) 30%, var(--violet) 70%, var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: clamp(1rem, 1.2vw + .4rem, 1.2rem);
+  color: var(--txt-soft);
+  line-height: 1.7;
+  max-inline-size: 36rem;
+  margin-block-end: var(--sp-xl);
+}
+
+.hero-actions {
+  display: flex;                   /* ← Flexbox: botones hero */
+  gap: var(--sp-md);
+  flex-wrap: wrap;
+  margin-block-end: var(--sp-2xl);
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: calc(var(--sp) * .7) var(--sp-xl);
+  border-radius: var(--r-md);
+  font-size: var(--t-small);
+  font-weight: 700;
+  transition: transform var(--ease), box-shadow var(--ease),
+              background-color var(--ease), color var(--ease);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, .35);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, .45);
+  text-decoration: none;
+  color: #fff;
+}
+.btn-ghost {
+  background-color: transparent;
+  color: var(--txt);
+  border: 1.5px solid var(--border-strong);
+}
+.btn-ghost:hover {
+  border-color: var(--indigo);
+  color: var(--indigo);
+  text-decoration: none;
+}
+
+/* Stats del hero */
+.hero-stats {
+  display: flex;                   /* ← Flexbox: stats */
+  align-items: center;
+  gap: var(--sp-xl);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+.stat-num {
+  font-size: clamp(1.8rem, 2.5vw + .5rem, 2.4rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.stat-label {
+  font-size: var(--t-small);
+  color: var(--txt-muted);
+  font-weight: 600;
+}
+.stat-divider {
+  inline-size: 1px;
+  block-size: 2.5rem;
+  background-color: var(--border-strong);
+}
+
+/* Visual del hero — tarjeta de código */
+.hero-visual {
+  position: relative;
+  flex: 0 1 26rem;
+  z-index: 1;
+}
+
+.code-card {
+  background-color: #1e1e2e;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255,255,255,.06);
+}
+.code-card-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  background-color: #161622;
+  border-block-end: 1px solid rgba(255,255,255,.06);
+}
+.dot {
+  inline-size: .65rem;
+  block-size: .65rem;
+  border-radius: 50%;
+}
+.dot.red    { background-color: #ff5f57; }
+.dot.yellow { background-color: #febc2e; }
+.dot.green  { background-color: #28c840; }
+
+.code-preview {
+  padding: var(--sp-lg) var(--sp-xl);
+  font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+  font-size: clamp(.78rem, .8vw + .35rem, .92rem);
+  line-height: 1.8;
+  overflow-x: auto;
+  color: #cdd6f4;
+  margin: 0;
+}
+
+/* Colores de sintaxis */
+.c-purple { color: #cba6f7; }
+.c-blue   { color: #89b4fa; }
+.c-white  { color: #cdd6f4; }
+.c-yellow { color: #f9e2af; }
+.c-green  { color: #a6e3a1; }
+.c-orange { color: #fab387; }
+
+/* Badges flotantes alrededor de la tarjeta */
+.floating-badge {
+  position: absolute;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: var(--sp-xs) var(--sp-md);
+  font-size: .75rem;
+  font-weight: 800;
+  color: var(--indigo);
+  box-shadow: var(--shadow-card);
+  white-space: nowrap;
+}
+.fb-html { inset-block-start: -1rem; inset-inline-start: -1.5rem; }
+.fb-css  { inset-block-end:  2rem;   inset-inline-start: -2rem;   }
+.fb-grid { inset-block-start: 2rem;  inset-inline-end: -1.5rem;   }
+
+
+/* ================================================================
+   07. PROYECTOS
+   ================================================================ */
+.area-proyectos {
+  padding-block: var(--sp-2xl);
+}
+
+/* Cabecera de sección reutilizable */
+.section-header {
+  margin-block-end: var(--sp-xl);
+}
+.section-tag {
+  display: block;
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--indigo);
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  margin-block-end: var(--sp-sm);
+  letter-spacing: .02em;
+}
+.section-header h2 {
+  font-size: var(--t-h2);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  color: var(--txt);
+  line-height: 1.2;
+}
+.section-desc {
+  font-size: var(--t-small);
+  color: var(--txt-soft);
+  margin-block-start: var(--sp-sm);
+}
+
+/* Grid de proyectos — masonry sin JS
+   IA: consulté por qué align-items:start es necesario para masonry →
+   Corrección manual: sin align-items:start el grid estira todas las
+   cards al alto de la más alta, rompiendo el efecto escalonado */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  grid-auto-rows: auto;
+  gap: var(--sp-lg);
+  align-items: start;            /* ← clave para masonry sin JS */
+}
+
+/* ── Card base ── */
+.project-card {
+  container-type: inline-size;   /* ← @container */
+  container-name: pcard;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+  box-shadow: var(--shadow-card);
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: color-mix(in srgb, var(--indigo) 30%, transparent);
+}
+
+/* Resplandor sutil en card destacada */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--indigo) 6%, transparent),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Card destacada — ocupa 2 filas */
+.card-featured {
+  grid-row: span 2;
+}
+
+/* Card ancha — ocupa 2 columnas */
+.card-wide {
+  grid-column: span 2;
+  flex-direction: row;
+}
+.card-wide .card-thumb {
+  flex: 0 0 11rem;
+  block-size: auto;
+}
+
+/* Miniatura de la card
+   IA: consulté cómo centrar el icono en el thumb sin flex anidado →
+   Corrección manual: reemplazé display:flex + align/justify-content
+   por display:grid + place-items para reducir propiedades redundantes */
+.card-thumb {
+  inline-size: 100%;
+  block-size: 9rem;
+  display: grid;
+  place-items: center;   /* ← Paso 3: shorthand de align-items + justify-items */
+  flex-shrink: 0;        /* ← Paso 3: flex-shrink explícito */
+  transition: filter var(--ease);
+}
+.card-featured .card-thumb {
+  block-size: 13rem;
+}
+.project-card:hover .card-thumb {
+  filter: brightness(1.05);
+}
+
+.thumb-icon {
+  font-size: clamp(2.2rem, 3vw + 1rem, 3.2rem);
+  line-height: 1;
+}
+
+/* Colores de thumbs */
+.thumb-web  { background-color: var(--c-web); }
+.thumb-db   { background-color: var(--c-db); }
+.thumb-net  { background-color: var(--c-net); }
+.thumb-a11y { background-color: var(--c-a11y); }
+.thumb-sys  { background-color: var(--c-sys); }
+
+/* Body de la card */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  padding: var(--sp-lg);
+  flex: 1;
+}
+
+.card-meta {
+  display: flex;                   /* ← Flexbox: meta de card */
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-xs);
+}
+
+/* Tags de categoría */
+.tag {
+  display: inline-block;
+  padding: var(--sp-xs) var(--sp-sm);
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.tag-web  { background-color: var(--c-web);  color: var(--c-web-t); }
+.tag-db   { background-color: var(--c-db);   color: var(--c-db-t); }
+.tag-net  { background-color: var(--c-net);  color: var(--c-net-t); }
+.tag-a11y { background-color: var(--c-a11y); color: var(--c-a11y-t); }
+.tag-sys  { background-color: var(--c-sys);  color: var(--c-sys-t); }
+
+.card-year {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--txt-muted);
+}
+
+.card-title {
+  font-size: var(--t-h3);
+  font-weight: 800;
+  color: var(--txt);
+  line-height: 1.3;
+  letter-spacing: -.02em;
+}
+
+.card-desc {
+  font-size: var(--t-small);
+  color: var(--txt-soft);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* Pills de tecnologías */
+.tech-pills {
+  display: flex;                   /* ← Flexbox: tech pills */
+  flex-wrap: wrap;
+  gap: var(--sp-xs);
+}
+.tech-pills li {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--txt-muted);
+  background-color: var(--bg-surface-2);
+  border: 1px solid var(--border);
+  padding: var(--sp-xs) var(--sp-sm);
+  border-radius: var(--r-sm);
+}
+
+/* Link de la card */
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  align-self: flex-start;
+  margin-block-start: auto;
+  padding-block-start: var(--sp-sm);
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--indigo);
+  transition: gap var(--ease), color var(--ease);
+  text-decoration: none;
+}
+.card-link:hover {
+  gap: var(--sp-sm);
+  color: var(--violet);
+  text-decoration: none;
+}
+
+
+/* ================================================================
+   08. SIDEBAR — HABILIDADES
+   ================================================================ */
+.area-sidebar {
+  padding-block: var(--sp-2xl);
+  position: sticky;
+  inset-block-start: calc(3.5rem + var(--sp-lg));
+  align-self: start;
+  /* Limitar el sticky al row de proyectos */
+  max-block-size: calc(100vh - 6rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* Card contenedora del sidebar */
+.area-sidebar .section-header {
+  margin-block-end: var(--sp-lg);
+}
+
+.skills-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.skills-panel-header {
+  padding: var(--sp-md) var(--sp-lg);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--indigo) 8%, transparent),
+    color-mix(in srgb, var(--violet) 5%, transparent)
+  );
+  border-block-end: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skills-panel-header h2,
+.skills-panel-title {
+  font-size: var(--t-h3);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  color: var(--txt);
+}
+
+.skills-panel-badge {
+  font-size: .68rem;
+  font-weight: 800;
+  color: var(--indigo);
+  background-color: color-mix(in srgb, var(--indigo) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--indigo) 20%, transparent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: .04em;
+}
+
+.skills-panel-body {
+  padding: var(--sp-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xl);
+}
+
+.skills-group { /* sin margin extra, el gap del panel-body lo maneja */ }
+
+.skills-group-title {
+  font-size: .68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--indigo);
+  margin-block-end: var(--sp-md);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+.skills-group-title::after {
+  content: '';
+  flex: 1;
+  block-size: 1px;
+  background: linear-gradient(90deg, var(--border-strong), transparent);
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.skill-item { display: flex; flex-direction: column; gap: var(--sp-xs); }
+
+.skill-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.skill-name {
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--txt);
+}
+.skill-pct {
+  font-size: .72rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.skill-bar {
+  block-size: .45rem;
+  background-color: var(--bg-surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.skill-fill {
+  block-size: 100%;
+  inline-size: var(--pct);
+  background: linear-gradient(90deg, var(--indigo), var(--violet));
+  border-radius: 999px;
+  transition: inline-size .9s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Tags de herramientas */
+.tools-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+}
+.tools-list li {
+  font-size: .72rem;
+  font-weight: 700;
+  padding: var(--sp-xs) var(--sp-md);
+  background-color: var(--bg-surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--txt-soft);
+  cursor: default;
+  transition: background-color var(--ease), color var(--ease), border-color var(--ease);
+}
+.tools-list li:hover {
+  background-color: color-mix(in srgb, var(--indigo) 12%, transparent);
+  color: var(--indigo);
+  border-color: color-mix(in srgb, var(--indigo) 30%, transparent);
+}
+
+/* Divisor entre panel y herramientas */
+.skills-divider {
+  block-size: 1px;
+  background: var(--border);
+  margin-block: var(--sp-xs);
+}
+
+
+/* ================================================================
+   09. SOBRE MÍ
+   ================================================================ */
+.area-about {
+  grid-column: 1 / -1;       /* fuerza que ocupe las 2 columnas */
+  padding-block: var(--sp-3xl) var(--sp-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Franja de fondo con gradiente sutil */
+.area-about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--indigo) 4%, transparent) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Línea superior decorativa */
+.area-about::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 2px;
+  background: linear-gradient(90deg, var(--indigo), var(--violet), var(--cyan), transparent);
+}
+
+.about-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3xl);
+  margin-block-start: var(--sp-xl);
+  align-items: start;
+}
+
+/* ── Lado izquierdo: texto ── */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.about-text p {
+  color: var(--txt-soft);
+  font-size: var(--t-body);
+  line-height: 1.8;
+}
+
+/* Resaltado especial en el primer párrafo */
+.about-text p:first-child {
+  font-size: clamp(1rem, 1.2vw + .4rem, 1.15rem);
+  color: var(--txt);
+}
+
+.about-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-md);
+  margin-block-start: var(--sp-lg);
+  padding: var(--sp-lg);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--indigo);
+  border-radius: 0 var(--r-lg) var(--r-lg) 0;
+  font-size: var(--t-small);
+  color: var(--txt-soft);
+  font-style: italic;
+  line-height: 1.7;
+}
+.about-highlight-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-block-start: .1rem;
+}
+
+/* ── Lado derecho: tarjetas de datos ── */
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-md);
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  padding: var(--sp-lg);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+  cursor: default;
+}
+.about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: color-mix(in srgb, var(--indigo) 25%, transparent);
+}
+
+.about-card-icon {
+  inline-size: 2.4rem;
+  block-size: 2.4rem;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--indigo) 15%, transparent),
+    color-mix(in srgb, var(--violet) 10%, transparent)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-block-end: var(--sp-xs);
+}
+
+.about-card dt {
+  font-size: .68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--txt-muted);
+}
+.about-card dd {
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--txt);
+  line-height: 1.4;
+}
+
+
+/* ================================================================
+   10. FOOTER
+   ================================================================ */
+.area-footer {
+  padding-block: var(--sp-2xl) var(--sp-xl);
+  border-block-start: 1px solid var(--border);
+  margin-block-start: var(--sp-xl);
+}
+
+.footer-inner {
+  display: grid;                   /* ← Grid interno del footer */
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--sp-2xl);
+  margin-block-end: var(--sp-xl);
+}
+
+.footer-brand .logo {
+  margin-block-end: var(--sp-sm);
+  display: inline-flex;
+}
+.footer-brand p {
+  font-size: var(--t-small);
+  color: var(--txt-muted);
+}
+
+.footer-nav-title {
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--txt-muted);
+  margin-block-end: var(--sp-md);
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+.footer-nav a {
+  font-size: var(--t-small);
+  color: var(--txt-soft);
+  transition: color var(--ease);
+  text-decoration: none;
+}
+.footer-nav a:hover {
+  color: var(--indigo);
+  text-decoration: none;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+.footer-contact p, .footer-contact a {
+  font-size: var(--t-small);
+  color: var(--txt-soft);
+}
+.footer-contact a:hover { color: var(--indigo); text-decoration: none; }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  padding-block-start: var(--sp-lg);
+  border-block-start: 1px solid var(--border);
+}
+.footer-bottom small, .footer-made small {
+  font-size: .75rem;
+  color: var(--txt-muted);
+}
+
+
+/* ================================================================
+   11. @MEDIA — Tablet ≤ 1024px
+   Breakpoints elegidos:
+     - 64rem (1024px): pasa a 1 columna, sidebar debajo de proyectos
+     - 40rem  (640px): móvil, columna única total
+   IA: consulté compatibilidad de @container vs @media para componentes →
+   Corrección manual: usé @media para layout macro y @container solo
+   para comportamiento interno de cards (ver sección 13)
+   ================================================================ */
+@media (max-width: 64rem) {
+
+  .page-grid {
+    grid-template-areas:
+      "hero"
+      "projects"
+      "sidebar"
+      "about"
+      "footer";
+    grid-template-columns: 1fr;
+    padding-inline: var(--sp-lg);
+    column-gap: 0;
+  }
+
+  .area-sidebar {
+    position: static;
+    padding-block-start: 0;
+    max-block-size: none;
+    overflow-y: visible;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-xl);
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .area-hero {
+    flex-direction: column;
+    text-align: center;
+    padding-block: var(--sp-2xl);
+  }
+
+  .hero-badge {
+    margin-inline: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  .card-wide {
+    grid-column: span 1;
+    flex-direction: column;
+  }
+  .card-wide .card-thumb {
+    flex: unset;
+    inline-size: 100%;
+    block-size: 9rem;
+  }
+}
+
+
+/* ================================================================
+   12. @MEDIA — Móvil ≤ 640px
+   ================================================================ */
+@media (max-width: 40rem) {
+
+  .page-grid {
+    padding-inline: var(--sp-md);
+  }
+
+  .header-inner {
+    padding-inline: var(--sp-md);
+    padding-block: var(--sp-sm);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-list {
+    gap: var(--sp-xs);
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-featured {
+    grid-row: span 1;
+  }
+
+  .about-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-xl);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    inline-size: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    gap: var(--sp-lg);
+  }
+}
+
+
+/* ================================================================
+   13. @CONTAINER — Cards autocontenidas
+   Compatibilidad: Chrome 105+, Firefox 110+, Safari 16+.
+   Fallback: flex-direction: column definido en .project-card
+   (navegadores sin soporte lo ignoran limpiamente).
+   IA: consulté compatibilidad de @container → Corrección manual:
+   envolví todo en @supports para fallback seguro.
+   ================================================================ */
+@supports (container-type: inline-size) {
+
+  @container pcard (min-width: 28rem) {
+    .card-body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto 1fr auto auto;
+      align-items: start;
+    }
+    .card-meta      { grid-column: 1 / -1; grid-row: 1; }
+    .card-title     { grid-column: 1 / -1; grid-row: 2; }
+    .card-desc      { grid-column: 1 / -1; grid-row: 3; }
+    .tech-pills     { grid-column: 1;       grid-row: 4; }
+    .card-link      {
+      grid-column: 2;
+      grid-row: 4;
+      margin-block-start: 0;
+      align-self: center;
+      padding-block-start: 0;
+    }
+  }
+}
